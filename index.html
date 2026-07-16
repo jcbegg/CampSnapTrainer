@@ -1,0 +1,1020 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Camp Snap Pro Field School — A Creative Photography Learning Plan</title>
+<style>
+  :root{
+    --pine:#22381f;
+    --forest:#3a5a34;
+    --moss:#6a8a5a;
+    --canvas:#f4f0e4;
+    --paper:#fbf9f1;
+    --bark:#4a3728;
+    --ember:#c25c33;
+    --sun:#e0a437;
+    --ink:#26261f;
+    --faded:#6d6a5c;
+    --line:#d8d2bd;
+    --card:#ffffff;
+    --mono:"Consolas","Menlo",monospace;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:"Segoe UI",system-ui,-apple-system,sans-serif;
+    background:var(--canvas);
+    color:var(--ink);
+    line-height:1.65;
+    font-size:17px;
+  }
+  h1,h2,h3,h4{font-family:Georgia,"Iowan Old Style",serif;line-height:1.25;color:var(--pine)}
+  a{color:var(--forest)}
+  img{max-width:100%;display:block}
+
+  /* ---------- header ---------- */
+  header.hero{
+    background:linear-gradient(160deg,var(--pine) 0%,var(--forest) 70%,#4c6b42 100%);
+    color:var(--canvas);
+    padding:64px 24px 56px;
+    text-align:center;
+  }
+  header.hero .kicker{
+    text-transform:uppercase;letter-spacing:.25em;font-size:.78rem;
+    color:var(--sun);font-weight:600;margin-bottom:14px;
+  }
+  header.hero h1{font-size:clamp(1.9rem,5vw,3.1rem);color:#fdfbf2;margin-bottom:16px}
+  header.hero p.sub{max-width:680px;margin:0 auto;font-size:1.06rem;color:#e4e6d4}
+  .hero-badges{margin-top:26px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+  .hero-badges span{
+    background:rgba(253,251,242,.12);border:1px solid rgba(253,251,242,.3);
+    padding:5px 14px;border-radius:999px;font-size:.82rem;
+  }
+
+  /* ---------- nav ---------- */
+  nav.toc{
+    position:sticky;top:0;z-index:50;background:var(--pine);
+    padding:10px 16px;display:flex;gap:6px;flex-wrap:wrap;justify-content:center;
+    box-shadow:0 2px 8px rgba(0,0,0,.25);
+  }
+  nav.toc a{
+    color:#e4e6d4;text-decoration:none;font-size:.8rem;padding:4px 11px;
+    border-radius:999px;border:1px solid transparent;white-space:nowrap;
+  }
+  nav.toc a:hover{border-color:var(--sun);color:var(--sun)}
+
+  /* ---------- layout ---------- */
+  main{max-width:960px;margin:0 auto;padding:16px 20px 80px}
+  section.module{margin-top:64px;scroll-margin-top:70px}
+  .module-head{border-bottom:3px solid var(--forest);padding-bottom:12px;margin-bottom:24px}
+  .module-head .mnum{
+    display:inline-block;background:var(--forest);color:#fdfbf2;
+    font-family:var(--mono);font-size:.78rem;padding:3px 10px;border-radius:4px;
+    letter-spacing:.08em;margin-bottom:10px;
+  }
+  .module-head h2{font-size:clamp(1.5rem,3.5vw,2.1rem)}
+  .module-head .meta{color:var(--faded);font-size:.9rem;margin-top:6px}
+  .part-divider{
+    margin-top:80px;text-align:center;color:var(--bark);
+  }
+  .part-divider .rope{letter-spacing:.5em;color:var(--moss);font-size:.9rem}
+  .part-divider h2{
+    font-size:clamp(1.4rem,3vw,1.9rem);margin-top:8px;color:var(--bark);
+  }
+  .part-divider p{color:var(--faded);max-width:620px;margin:8px auto 0;font-size:.95rem}
+
+  h3{font-size:1.22rem;margin:32px 0 10px;color:var(--forest)}
+  p{margin-bottom:14px}
+  ul,ol{margin:0 0 16px 24px}
+  li{margin-bottom:7px}
+  strong{color:var(--pine)}
+
+  /* ---------- figures ---------- */
+  figure{
+    margin:22px 0;background:var(--card);border:1px solid var(--line);
+    border-radius:10px;overflow:hidden;box-shadow:0 3px 12px rgba(38,38,31,.08);
+  }
+  figure img{width:100%;max-height:520px;object-fit:cover;background:#e8e4d4}
+  figcaption{padding:12px 16px;font-size:.86rem;color:var(--faded);border-top:1px solid var(--line)}
+  figcaption a{color:var(--moss)}
+  .fig-row{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  @media(max-width:700px){.fig-row{grid-template-columns:1fr}}
+  .fig-row figure{margin:22px 0 0}
+
+  /* ---------- callouts & cards ---------- */
+  .callout{
+    border-left:5px solid var(--sun);background:var(--paper);
+    padding:16px 20px;border-radius:0 10px 10px 0;margin:20px 0;
+    font-size:.96rem;
+  }
+  .callout.camera{border-color:var(--ember)}
+  .callout .co-title{
+    font-weight:700;color:var(--bark);display:block;margin-bottom:6px;
+    font-size:.82rem;text-transform:uppercase;letter-spacing:.12em;
+  }
+  .exercise{
+    background:var(--card);border:1px solid var(--line);border-radius:10px;
+    padding:20px 22px;margin:18px 0;box-shadow:0 2px 8px rgba(38,38,31,.06);
+  }
+  .exercise .ex-top{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:8px}
+  .exercise h4{font-size:1.05rem;color:var(--pine)}
+  .chip{
+    font-size:.72rem;font-family:var(--mono);padding:2px 10px;border-radius:999px;
+    background:var(--canvas);border:1px solid var(--line);color:var(--faded);white-space:nowrap;
+  }
+  .chip.gear{background:#f3e9df;border-color:#dcc8b4;color:var(--bark)}
+  .chip.time{background:#e9efe2;border-color:#c8d6ba;color:var(--forest)}
+  .exercise ol,.exercise ul{margin-bottom:6px}
+
+  table{width:100%;border-collapse:collapse;margin:18px 0;background:var(--card);
+    border-radius:10px;overflow:hidden;font-size:.92rem;border:1px solid var(--line)}
+  th{background:var(--forest);color:#fdfbf2;text-align:left;padding:10px 14px;font-weight:600}
+  td{padding:10px 14px;border-top:1px solid var(--line);vertical-align:top}
+  tr:nth-child(even) td{background:var(--paper)}
+  .table-scroll{overflow-x:auto}
+
+  .path-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin:20px 0}
+  .path-card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:18px 20px}
+  .path-card h4{color:var(--forest);margin-bottom:8px;font-size:1rem}
+  .path-card p{font-size:.9rem;color:var(--faded);margin-bottom:0}
+
+  .checklist{list-style:none;margin-left:0}
+  .checklist li{padding-left:30px;position:relative}
+  .checklist li::before{
+    content:"◻";position:absolute;left:2px;color:var(--moss);font-size:1.05rem;
+  }
+
+  footer{
+    background:var(--pine);color:#c9ccb4;text-align:center;
+    padding:36px 20px;font-size:.85rem;margin-top:60px;
+  }
+  footer a{color:var(--sun)}
+  .svg-wrap{background:var(--card);border:1px solid var(--line);border-radius:10px;
+    padding:20px;margin:22px 0;overflow-x:auto}
+  .svg-wrap svg{display:block;margin:0 auto;max-width:100%;height:auto}
+  @media print{
+    nav.toc{display:none}
+    body{background:#fff}
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="kicker">A modular self-paced curriculum</div>
+  <h1>The Camp Snap Pro Field School</h1>
+  <p class="sub">Twelve modules for learning creative, non-portrait photography with a screen-free camera, a pair of mist filters, a red filter, and programmable film looks — built for an intermediate shooter with 3–5 hours a week.</p>
+  <div class="hero-badges">
+    <span>📷 Camp Snap CS-Pro</span>
+    <span>🌫️ White + Black Mist Filters</span>
+    <span>🔴 Red Filter (B&amp;W)</span>
+    <span>⏱️ 3–5 hrs / week</span>
+  </div>
+</header>
+
+<nav class="toc">
+  <a href="#m0">0 · Your Camera</a>
+  <a href="#m1">1 · Light</a>
+  <a href="#m2">2 · Composition</a>
+  <a href="#m3">3 · The Wide Lens</a>
+  <a href="#m4">4 · Landscape</a>
+  <a href="#m5">5 · Street</a>
+  <a href="#m6">6 · Abstract</a>
+  <a href="#m7">7 · Still Life</a>
+  <a href="#m8">8 · Mist Filters</a>
+  <a href="#m9">9 · Red Filter B&amp;W</a>
+  <a href="#m10">10 · Digital Looks</a>
+  <a href="#m11">11 · Practice System</a>
+</nav>
+
+<main>
+
+<!-- ============ HOW TO USE ============ -->
+<section class="module" id="how">
+  <div class="module-head">
+    <span class="mnum">START HERE</span>
+    <h2>How this plan works</h2>
+  </div>
+  <p>This is a <strong>modular curriculum</strong> — after finishing Modules 0–3 (the foundation), take the subject and filter modules in any order that matches the weather, the season, and your mood. Every module is sized for roughly <strong>one to two weeks at 3–5 hours</strong>: a short read, two or three field exercises, and one substantial assignment.</p>
+  <p>Three principles run through everything here:</p>
+  <ul>
+    <li><strong>The constraint is the teacher.</strong> The CS-Pro has no screen, no autofocus, no manual exposure. That removes every excuse to fiddle and forces the two skills that actually make photographs: <em>seeing light</em> and <em>arranging the frame</em>.</li>
+    <li><strong>Commit, then review.</strong> You can't chimp. Shoot a full outing, then review on the computer like a contact sheet — this delayed feedback loop is the fastest way to calibrate your eye.</li>
+    <li><strong>One variable at a time.</strong> Each exercise isolates a single idea (one kind of light, one compositional device, one filter). Mastery comes from repetition of small ideas, not from complicated shoots.</li>
+  </ul>
+  <div class="path-grid">
+    <div class="path-card"><h4>🏕️ Suggested path</h4><p>0 → 1 → 2 → 3 (foundation, in order) → then alternate one subject module with one filter module: 4 → 8 → 5 → 9 → 6 → 7 → 10 → 11.</p></div>
+    <div class="path-card"><h4>🌦️ Weather-driven path</h4><p>Sunny week? Do 9 (red filter needs bright light). Overcast or foggy? 6 or 7. Golden evenings free? 1 and 4. Rain just ended? Reflections in 6.</p></div>
+    <div class="path-card"><h4>📓 Keep a field log</h4><p>The camera has no screen, so carry a pocket note: frame number, what you tried, what you predicted. Comparing predictions to results is where learning happens.</p></div>
+  </div>
+</section>
+
+<!-- ============ PART I ============ -->
+<div class="part-divider">
+  <div class="rope">· · · ⛺ · · ·</div>
+  <h2>Part I — Foundation</h2>
+  <p>Learn what the camera decides for you, what it leaves to you, and how to exploit both.</p>
+</div>
+
+<!-- ============ MODULE 0 ============ -->
+<section class="module" id="m0">
+  <div class="module-head">
+    <span class="mnum">MODULE 0</span>
+    <h2>Meet your CS-Pro: thinking like the camera</h2>
+    <div class="meta">~1 week · mostly indoors · gear: camera + USB-C cable</div>
+  </div>
+
+  <p>The Camp Snap CS-Pro is a <strong>screen-free 16&nbsp;MP digital point-and-shoot</strong> with a rangefinder-inspired body: an optical viewfinder, a fixed wide-angle lens, a true xenon flash, and a four-position dial that switches between onboard film-style looks. Everything else — exposure, focus — is decided for you. Creative control therefore lives in exactly four places: <strong>where you stand, when you press, what light you choose, and what you put on the lens</strong>. The whole curriculum is built on those four levers.</p>
+
+  <div class="table-scroll">
+  <table>
+    <tr><th>Spec</th><th>Value</th><th>What it means creatively</th></tr>
+    <tr><td>Sensor</td><td>16 MP, 1/3.06″ CMOS</td><td>Small sensor → deep depth of field, visible grain, a charming "digicam" character. Don't fight it — it's the aesthetic.</td></tr>
+    <tr><td>Lens</td><td>f/2.2 fixed, 2.56 mm (≈ <strong>22.5 mm equivalent</strong>)</td><td>A genuinely wide lens. Great for scenes and context; useless for tight headshots — perfect for our non-portrait plan.</td></tr>
+    <tr><td>Focus</td><td>Fixed focus, sharp from ≈ <strong>3 ft (1 m) to infinity</strong></td><td>No focusing ever, but nothing closer than ~3 ft will be sharp. This one rule shapes still life and detail work.</td></tr>
+    <tr><td>Exposure</td><td>Fully automatic, shutter 1/30 s – 1/1000 s</td><td>You steer exposure indirectly: by choosing the light, your angle to it, and what fills the frame.</td></tr>
+    <tr><td>Viewfinder</td><td>Small optical window (not through-the-lens)</td><td>What you see is approximate. Filters never darken your view — a real advantage with the deep red filter.</td></tr>
+    <tr><td>Flash</td><td>True <strong>xenon</strong> flash — powerful, fast, "party flash" look</td><td>A creative tool for the hard-flash aesthetic. Auto mode is better-behaved than forced mode up close.</td></tr>
+    <tr><td>Looks dial</td><td>4 positions: Standard, Vintage&nbsp;1 (warm), Vintage&nbsp;2 (cool), B&amp;W</td><td>Each position is a replaceable <code>.flt</code> file — you can load custom film looks (Module 10).</td></tr>
+    <tr><td>Filter thread</td><td><strong>37 mm</strong></td><td>Your white mist, black mist, and red filters screw straight on — and can even stack.</td></tr>
+    <tr><td>Storage / power</td><td>4 GB internal, USB-C, ~500 shots/charge</td><td>Enough for weeks. Transfers by USB-C to a computer (or USB-C phone).</td></tr>
+  </table>
+  </div>
+
+  <div class="svg-wrap">
+    <svg viewBox="0 0 760 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Diagram of the Camp Snap CS-Pro camera">
+      <rect x="60" y="70" width="420" height="180" rx="16" fill="#3d3a34" stroke="#26261f" stroke-width="3"/>
+      <rect x="60" y="70" width="420" height="40" rx="16" fill="#55524a"/>
+      <rect x="90" y="90" width="70" height="42" rx="6" fill="#1a1916" stroke="#0d0d0b" stroke-width="2"/>
+      <rect x="102" y="100" width="46" height="24" rx="3" fill="#7fa8c9" opacity=".85"/>
+      <rect x="330" y="84" width="90" height="34" rx="6" fill="#efe9d8" stroke="#26261f" stroke-width="2"/>
+      <circle cx="270" cy="175" r="62" fill="#1a1916" stroke="#0d0d0b" stroke-width="3"/>
+      <circle cx="270" cy="175" r="46" fill="#26261f"/>
+      <circle cx="270" cy="175" r="30" fill="#101010"/>
+      <circle cx="258" cy="163" r="9" fill="#3f5d78" opacity=".8"/>
+      <circle cx="270" cy="175" r="62" fill="none" stroke="#c9a24b" stroke-width="4" stroke-dasharray="5 6"/>
+      <circle cx="430" cy="60" r="14" fill="#efe9d8" stroke="#26261f" stroke-width="3"/>
+      <rect x="426" y="30" width="8" height="22" fill="#26261f"/>
+      <circle cx="150" cy="52" r="20" fill="#55524a" stroke="#26261f" stroke-width="3"/>
+      <line x1="150" y1="52" x2="150" y2="36" stroke="#e0a437" stroke-width="3"/>
+      <line x1="510" y1="98" x2="600" y2="70" stroke="#6a8a5a" stroke-width="2"/>
+      <text x="606" y="74" font-family="Georgia,serif" font-size="15" fill="#3a5a34">Optical viewfinder</text>
+      <line x1="345" y1="101" x2="600" y2="112" stroke="#6a8a5a" stroke-width="2"/>
+      <text x="606" y="116" font-family="Georgia,serif" font-size="15" fill="#3a5a34">Xenon flash</text>
+      <line x1="332" y1="175" x2="600" y2="160" stroke="#6a8a5a" stroke-width="2"/>
+      <text x="606" y="164" font-family="Georgia,serif" font-size="15" fill="#3a5a34">22.5&#8202;mm-eq f/2.2 lens</text>
+      <line x1="300" y1="228" x2="600" y2="205" stroke="#c25c33" stroke-width="2"/>
+      <text x="606" y="209" font-family="Georgia,serif" font-size="15" fill="#c25c33">37&#8202;mm filter thread</text>
+      <line x1="163" y1="42" x2="220" y2="20" stroke="#6a8a5a" stroke-width="2"/>
+      <text x="226" y="22" font-family="Georgia,serif" font-size="15" fill="#3a5a34">Looks dial: STD · VTG1 · VTG2 · B&amp;W</text>
+      <line x1="437" y1="46" x2="520" y2="28" stroke="#6a8a5a" stroke-width="2"/>
+      <text x="526" y="30" font-family="Georgia,serif" font-size="15" fill="#3a5a34">Shutter button</text>
+      <text x="60" y="288" font-family="Georgia,serif" font-size="13" fill="#6d6a5c" font-style="italic">Your four creative controls: position, timing, light — and whatever glass you thread onto the front.</text>
+    </svg>
+  </div>
+
+  <h3>The three quirks to internalize now</h3>
+  <ul>
+    <li><strong>Parallax:</strong> the viewfinder sits above-left of the lens, so it doesn't see exactly what the lens sees — and the finder shows slightly less than the lens captures. Up close, aim a touch high-left of where the finder suggests; expect a bit of extra scene around every frame.</li>
+    <li><strong>The 3-foot wall:</strong> anything closer than about an arm's length plus a hand goes soft. Measure 3 ft against your own body (fingertip to opposite shoulder is close for most people) — that's your built-in ruler forever.</li>
+    <li><strong>Averaged exposure:</strong> the camera meters the whole scene. A frame dominated by bright sky comes out dark; a frame dominated by shadow comes out bright. You "set exposure" by choosing how much bright or dark stuff fills the frame — this trick powers silhouettes in Module 1.</li>
+  </ul>
+
+  <div class="callout camera">
+    <span class="co-title">🔧 CS-Pro reality check</span>
+    Reviewers consistently describe the CS-Pro's output as deliberately imperfect: visible grain even in daylight, some color fringing on backlit edges, soft corners, punchy color. This curriculum treats those traits as a <em>style</em> — like shooting a good disposable film camera — not as flaws to overcome.
+  </div>
+
+  <div class="exercise">
+    <div class="ex-top"><h4>Exercise 0.1 — Calibration roll</h4><span class="chip time">⏱ 60–90 min</span><span class="chip gear">camera only</span></div>
+    <ol>
+      <li>Shoot the <em>same simple scene</em> (your yard, a street corner) 4 times — once on each dial position. Log the frame numbers.</li>
+      <li>Shoot one subject at 5 distances: 1 ft, 2 ft, 3 ft, 6 ft, 15 ft. (Only expect sharpness from 3 ft out.)</li>
+      <li>Shoot a scene that's mostly sky, then recompose the same scene mostly ground.</li>
+      <li>Frame a doorway precisely in the viewfinder, edge-to-edge, from about 4 ft away.</li>
+      <li>Download everything and study: How do the four looks differ? Where does sharpness begin? How did sky vs. ground shift exposure? How much more did the lens see than your finder?</li>
+    </ol>
+  </div>
+
+  <div class="exercise">
+    <div class="ex-top"><h4>Assignment 0 — 24 frames, no review</h4><span class="chip time">⏱ one outing</span><span class="chip gear">camera only</span></div>
+    <p>Pretend the camera holds one roll of film: exactly 24 exposures on a single walk. Every press must be deliberate — say out loud <em>why</em> before each frame. Review at home in one sitting and pick your best 3. This "one roll" ritual repeats throughout the plan; it's the discipline that makes a screen-free camera a teacher rather than a toy.</p>
+  </div>
+</section>
+
+<!-- ============ MODULE 1 ============ -->
+<section class="module" id="m1">
+  <div class="module-head">
+    <span class="mnum">MODULE 1</span>
+    <h2>Seeing light: the only exposure control you have</h2>
+    <div class="meta">~1–2 weeks · outdoors at varied hours · gear: camera only</div>
+  </div>
+
+  <p>With auto-everything, <strong>light is your aperture, your shutter dial, and your color grade all at once</strong>. Photographers describe light along three axes — learn to name all three before every frame:</p>
+  <ul>
+    <li><strong>Quality:</strong> hard (small source — direct sun, xenon flash) makes crisp shadows and drama; soft (big source — overcast sky, open shade) makes gentle gradients and rich color.</li>
+    <li><strong>Direction:</strong> front light flattens; side light sculpts texture; backlight makes silhouettes, glow, and rim-light.</li>
+    <li><strong>Color:</strong> warm at golden hour, blue at dusk, green under trees, mixed at night. The Vintage looks amplify or fight these — a warm look at golden hour doubles down; a cool look at dusk goes moody.</li>
+  </ul>
+
+  <figure>
+    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Togetsu-ky%C5%8D%20bridge%20at%20golden%20hour%2C%20Kyoto%2C%20Japan.jpg?width=1000" alt="Togetsu-kyō bridge at golden hour, Kyoto" loading="lazy">
+    <figcaption><strong>Golden hour:</strong> low, warm, directional sun rakes across the scene — the single most flattering light for a small-sensor camera, because the contrast range shrinks to what the sensor can hold. <a href="https://commons.wikimedia.org/wiki/File:Togetsu-ky%C5%8D_bridge_at_golden_hour,_Kyoto,_Japan.jpg">Wikimedia Commons</a></figcaption>
+  </figure>
+
+  <h3>The golden and blue hours</h3>
+  <p>The hour after sunrise and before sunset gives warm, low-angle, low-contrast light — the CS-Pro's sweet spot. The twenty minutes after sunset (blue hour) is dimmer; expect the shutter to drop toward 1/30 s, so brace your elbows or rest the camera on something solid. Grain rises in dim light — treat it as mood.</p>
+
+  <h3>Backlight and silhouettes: exposure hacking</h3>
+  <p>Because the meter averages the frame, you can force a silhouette: <strong>fill most of the frame with bright sky behind a strong shape</strong>. The camera exposes for the sky and the subject collapses to black. Reverse it — fill the frame with the shaded side — and the sky blows out to white instead. This is the closest thing you have to exposure compensation; own it.</p>
+
+  <div class="fig-row">
+    <figure>
+      <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Silhouette%20of%20a%20tree%20at%20sunset.jpg?width=800" alt="Silhouette of a tree at sunset" loading="lazy">
+      <figcaption><strong>Silhouette:</strong> mostly-sky framing tricks the averaging meter into rendering the tree as pure shape. <a href="https://commons.wikimedia.org/wiki/File:Silhouette_of_a_tree_at_sunset.jpg">Wikimedia Commons</a></figcaption>
+    </figure>
+    <figure>
+      <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Taro%20leaf%20underside%2C%20backlit%20by%20sun%20-%20edit.jpg?width=800" alt="Backlit taro leaf glowing" loading="lazy">
+      <figcaption><strong>Translucent backlight:</strong> shoot <em>through</em> leaves toward the sun and they glow like stained glass. The CS-Pro's fringing on backlit edges adds a film-like halo. <a href="https://commons.wikimedia.org/wiki/File:Taro_leaf_underside,_backlit_by_sun_-_edit.jpg">Wikimedia Commons</a></figcaption>
+    </figure>
+  </div>
+
+  <div class="exercise">
+    <div class="ex-top"><h4>Exercise 1.1 — One subject, four lights</h4><span class="chip time">⏱ across 2–3 days</span><span class="chip gear">camera only</span></div>
+    <p>Pick one stationary outdoor subject (a bench, a mailbox, a tree). Photograph it identically composed in: (1) midday sun, (2) overcast/open shade, (3) golden hour side-light, (4) backlit. Same spot, same framing. Compare — this is the fastest way to <em>feel</em> that light, not subject, makes the picture.</p>
+  </div>
+
+  <div class="exercise">
+    <div class="ex-top"><h4>Exercise 1.2 — Silhouette hunt</h4><span class="chip time">⏱ 60 min at sunset</span><span class="chip gear">camera only</span></div>
+    <p>Make 10 silhouettes of objects with strong outlines — fences, bikes, branches, machinery. Rule: the shape must read instantly even as pure black. Keep shapes from overlapping (wide lens tip: step sideways to separate them against the sky).</p>
+  </div>
+
+  <div class="exercise">
+    <div class="ex-top"><h4>Assignment 1 — "The same walk, twice"</h4><span class="chip time">⏱ 2 outings</span><span class="chip gear">camera only</span></div>
+    <p>Walk one route at midday, shooting 12 frames. Repeat the identical route and framings at golden hour. Build a side-by-side of the pairs and write one sentence per pair on what the light changed: shadow direction, color, mood, texture.</p>
+  </div>
+</section>
+
+<!-- ============ MODULE 2 ============ -->
+<section class="module" id="m2">
+  <div class="module-head">
+    <span class="mnum">MODULE 2</span>
+    <h2>Composition: arranging the frame</h2>
+    <div class="meta">~1–2 weeks · anywhere · gear: camera only</div>
+  </div>
+
+  <p>You can't zoom and you can't blur backgrounds away — on the CS-Pro, <strong>composition is done entirely with your feet and your patience</strong>. This module drills the six devices that do the most work in landscape, street, abstract, and still-life photography.</p>
+
+  <h3>1 · Thirds — and when to break them</h3>
+  <p>Place horizons and key subjects on imaginary third-lines rather than dead center. Since your viewfinder has no gridlines, <em>visualize</em> the grid — after a week it becomes automatic. Break the rule deliberately for symmetry (reflections, architecture) by centering with precision.</p>
+
+  <figure>
+    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Rule%20of%20thirds%20photo.jpg?width=1000" alt="Rule of thirds demonstration photo" loading="lazy">
+    <figcaption><strong>Thirds in practice:</strong> the horizon rides the lower third-line, the subject sits at an intersection. <a href="https://commons.wikimedia.org/wiki/File:Rule_of_thirds_photo.jpg">Wikimedia Commons</a></figcaption>
+  </figure>
+
+  <h3>2 · Leading lines</h3>
+  <p>Roads, rails, fences, shorelines, shadows — lines drag the eye through the frame. The 22.5&nbsp;mm lens exaggerates convergence dramatically: stand <em>on</em> the line, point it toward your subject, and the wide angle does the rest.</p>
+
+  <figure>
+    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Amboy%20(California%2C%20USA)%2C%20Hist.%20Route%2066%20--%202012%20--%201.jpg?width=1000" alt="Route 66 vanishing into the desert, leading lines" loading="lazy">
+    <figcaption><strong>Leading lines + wide angle:</strong> standing on the centerline turns a road into an arrow. Note how much foreground a wide lens demands — and rewards. <a href="https://commons.wikimedia.org/wiki/File:Amboy_(California,_USA),_Hist._Route_66_--_2012_--_1.jpg">Wikimedia Commons</a></figcaption>
+  </figure>
+
+  <h3>3 · Frames within frames</h3>
+  <p>Shoot through arches, windows, branches, and doorways. A frame-in-frame adds depth, hides messy edges, and — usefully on a wide lens — crops the scene without zooming.</p>
+
+  <div class="fig-row">
+    <figure>
+      <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Empire%20State%20Building%20through%20the%20Manhattan%20Bridge%20arch%2C%20Dumbo%2C%20Brooklyn%2C%20New%20York.jpg?width=800" alt="Empire State Building framed by Manhattan Bridge arch" loading="lazy">
+      <figcaption><strong>Urban frame:</strong> the bridge arch turns a cluttered street into a composed picture. <a href="https://commons.wikimedia.org/wiki/File:Empire_State_Building_through_the_Manhattan_Bridge_arch,_Dumbo,_Brooklyn,_New_York.jpg">Wikimedia Commons</a></figcaption>
+    </figure>
+    <figure>
+      <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Picture%20Frame%20Arch%20With%20Delicate%20Arch%2C%20Arches%20National%20Park%2C%20Utah%20(2408955116).jpg?width=800" alt="Delicate Arch seen through Picture Frame Arch" loading="lazy">
+      <figcaption><strong>Natural frame:</strong> rock, foliage, or shadow can do the same job in the landscape. <a href="https://commons.wikimedia.org/wiki/File:Picture_Frame_Arch_With_Delicate_Arch,_Arches_National_Park,_Utah_(2408955116).jpg">Wikimedia Commons</a></figcaption>
+    </figure>
+  </div>
+
+  <h3>4 · Negative space</h3>
+  <p>Empty sky, water, sand, or wall gives one small subject enormous weight. The wide lens is a negative-space machine — it swallows huge amounts of emptiness. Minimalism also photographs beautifully in flat, overcast light when nothing else does.</p>
+
+  <figure>
+    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Zoutelande%20(NL)%2C%20Strand%2C%20Blick%20auf%20die%20Nordsee%20--%202022%20--%204984.jpg?width=1000" alt="Minimal beach and sea view with large sky" loading="lazy">
+    <figcaption><strong>Negative space:</strong> vast emptiness makes small elements monumental — and calm. <a href="https://commons.wikimedia.org/wiki/File:Zoutelande_(NL),_Strand,_Blick_auf_die_Nordsee_--_2022_--_4984.jpg">Wikimedia Commons</a></figcaption>
+    </figure>
+
+  <h3>5 · Layers</h3>
+  <p>Strong wide-angle photos usually contain a <strong>foreground (3–8 ft), midground, and background</strong>. Before pressing, ask: "what's my near thing?" If the answer is "nothing," take two steps forward until something enters the bottom of the frame.</p>
+
+  <h3>6 · Pattern, geometry, and the broken pattern</h3>
+  <p>Repetition (windows, fences, shadows) is instantly graphic; a single interruption in the repetition becomes the subject. Look up at facades and down at pavement.</p>
+
+  <figure>
+    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Angular%20Facade%20of%20Casa%20da%20M%C3%BAsica%2C%20Porto%2C%20Portugal%20(54831648382).jpg?width=1000" alt="Angular concrete facade, geometric abstraction" loading="lazy">
+    <figcaption><strong>Geometry as subject:</strong> tilt the camera to align (or deliberately break) the building's lines with the frame edges. <a href="https://commons.wikimedia.org/wiki/File:Angular_Facade_of_Casa_da_M%C3%BAsica,_Porto,_Portugal_(54831648382).jpg">Wikimedia Commons</a></figcaption>
+  </figure>
+
+  <div class="exercise">
+    <div class="ex-top"><h4>Exercise 2.1 — One device per outing</h4><span class="chip time">⏱ 6 × 30 min</span><span class="chip gear">camera only</span></div>
+    <p>Six mini-walks, each devoted to a single device above: 8 frames of <em>only</em> leading lines, then 8 of only frames-in-frames, and so on. Constraint breeds seeing.</p>
+  </div>
+
+  <div class="exercise">
+    <div class="ex-top"><h4>Exercise 2.2 — Work the scene</h4><span class="chip time">⏱ 45 min</span><span class="chip gear">camera only</span></div>
+    <p>Choose one ordinary subject. Make <strong>12 genuinely different compositions</strong> of it without leaving a 30-foot circle: crouch, climb, tilt, center it, third it, frame it, silhouette it, put it tiny in negative space. The tenth idea is where photography starts.</p>
+  </div>
+
+  <div class="exercise">
+    <div class="ex-top"><h4>Assignment 2 — The six-frame essay</h4><span class="chip time">⏱ one outing + edit</span><span class="chip gear">camera only</span></div>
+    <p>Produce a set of six pictures of one location, using at least four different compositional devices, that hang together as a sequence. Order matters: wide establishing frame → details → a closing image.</p>
+  </div>
+</section>
+
+<!-- ============ MODULE 3 ============ -->
+<section class="module" id="m3">
+  <div class="module-head">
+    <span class="mnum">MODULE 3</span>
+    <h2>Mastering the wide fixed lens</h2>
+    <div class="meta">~1 week · anywhere · gear: camera only</div>
+  </div>
+
+  <p>22.5&nbsp;mm-equivalent is wider than most phone main cameras. Wide lenses don't just "fit more in" — they <strong>change spatial relationships</strong>: near things get huge, far things shrink, and empty middle distance turns into dead space. The classic beginner failure with this lens is standing too far back and getting a small, cluttered everything-photo. The fix is a mantra:</p>
+
+  <div class="callout">
+    <span class="co-title">🥾 The wide-lens mantra</span>
+    <strong>"Get close, then get closer — then find the background."</strong> Compose in two acts: walk toward your subject until it dominates the frame (stopping at the 3-ft sharpness wall), <em>then</em> move your feet sideways/up/down to place a clean, meaningful background behind it. Foreground first, background second, press third.
+  </div>
+
+  <h3>Techniques specific to this camera</h3>
+  <ul>
+    <li><strong>Depth is free.</strong> The tiny sensor keeps almost everything sharp from 3 ft to the horizon — so deep near-far compositions (boulder at 3 ft + mountain at 3 miles, both sharp) are your superpower. Blur is not on the menu; depth is.</li>
+    <li><strong>Low and high angles pay double.</strong> Wide + low makes foreground textures rush toward the viewer; wide + high flattens scenes into maps. Because there's no screen to squint at, just place the camera at boot level and trust the wide field to catch it.</li>
+    <li><strong>Tilt with intent.</strong> Wide lenses make converging verticals obvious. Either hold the camera dead level (buildings stay straight) or tilt hard so the convergence reads as deliberate drama. Halfway looks like a mistake.</li>
+    <li><strong>Shoot blind, on purpose.</strong> No screen means no shame: hold the camera overhead in a crowd, at your hip, out of a (stopped!) canoe. The wide angle is forgiving of aim, and blind angles produce frames your eye would never compose. Take three attempts per idea.</li>
+    <li><strong>The finder lies a little.</strong> Remember Module 0: the lens sees more than the finder shows. Compose slightly tighter than feels right, and check edges of important frames by taking one "insurance" frame a step closer.</li>
+  </ul>
+
+  <figure>
+    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Sunset%20near%20Great%20Sand%20Dunes%20National%20Park.jpg?width=1000" alt="Sunset landscape with strong foreground near Great Sand Dunes" loading="lazy">
+    <figcaption><strong>Near-far depth:</strong> foreground anchors give a wide frame scale and pull. Everything from your boots to the horizon is sharp on a small sensor — use it. <a href="https://commons.wikimedia.org/wiki/File:Sunset_near_Great_Sand_Dunes_National_Park.jpg">Wikimedia Commons</a></figcaption>
+  </figure>
+
+  <div class="exercise">
+    <div class="ex-top"><h4>Exercise 3.1 — Three-foot portraits of things</h4><span class="chip time">⏱ 45 min</span><span class="chip gear">camera only</span></div>
+    <p>Photograph 10 objects from exactly your minimum sharp distance (~3 ft), each with a deliberately chosen background. Objects, not people: hydrants, hand tools, flowers, boots. Learn what "close" means on this lens — it's closer than you think.</p>
+  </div>
+
+  <div class="exercise">
+    <div class="ex-top"><h4>Exercise 3.2 — Boot-level / sky-level</h4><span class="chip time">⏱ 45 min</span><span class="chip gear">camera only</span></div>
+    <p>20 frames, none taken from eye level. Ten from below knee height, ten from arms fully overhead. Review and note which surprised you — blind shooting with a wide lens is a repeatable creative engine, not a gimmick.</p>
+  </div>
+
+  <div class="exercise">
+    <div class="ex-top"><h4>Assignment 3 — Foreground or it didn't happen</h4><span class="chip time">⏱ one outing</span><span class="chip gear">camera only</span></div>
+    <p>A full 24-frame "roll" in which <strong>every frame must contain something 3–8 ft from the lens</strong>. No exceptions, even for grand vistas. This single constraint fixes 80% of wide-angle photography.</p>
+  </div>
+</section>
+<!-- ============ PART II ============ -->
+<div class="part-divider">
+  <div class="rope">· · · 🌲 · · ·</div>
+  <h2>Part II — Subject Studios</h2>
+  <p>Four genres, each shaped around what the CS-Pro does best. Take them in any order — let the season and your week decide.</p>
+</div>
+
+<!-- ============ MODULE 4 ============ -->
+<section class="module" id="m4">
+  <div class="module-head">
+    <span class="mnum">MODULE 4</span>
+    <h2>Landscape &amp; nature</h2>
+    <div class="meta">~2 weeks · trails, parks, water · gear: camera; optional black mist for haze mood</div>
+  </div>
+
+  <p>The CS-Pro was practically designed for this genre — pocketable, weatherable-ish, always ready, wide. But small-sensor landscape has one hard rule: <strong>the sensor can't hold a bright sky and a dark land at the same time</strong>. Great CS-Pro landscapes are therefore made at the edges of the day, in weather, or by choosing which half of the scene to sacrifice.</p>
+
+  <h3>Field craft</h3>
+  <ul>
+    <li><strong>Shoot the light, not the view.</strong> A mediocre hill in golden side-light beats a famous vista at noon. Plan outings around the first/last 90 minutes of sun.</li>
+    <li><strong>Sky or land — commit.</strong> Mostly-sky framing gives you rich clouds and dark, moody land (drama). Mostly-land framing gives you detailed terrain and a blown, white sky (use that white as negative space). Both are valid <em>choices</em>; the 50/50 split is the only failure.</li>
+    <li><strong>Foreground anchor, always</strong> (Module 3): rocks, flowers, driftwood, ice, boot prints in the bottom third.</li>
+    <li><strong>Weather is a subject.</strong> Fog, drizzle, and storm-light compress contrast into exactly the range the sensor loves — an overcast "bad" day is a gift. (Your mist filters push this further; see Module 8.)</li>
+    <li><strong>Water at 1/30 s.</strong> In dim light the shutter floor is 1/30 s — brace the camera on a rock and moving water picks up a whisper of blur while stones stay sharp. It's subtle, but it's the only motion-blur the camera will give you; hunt for it at dusk near streams.</li>
+    <li><strong>Intimate landscapes.</strong> When the grand scene isn't working, drop to the small one: a single fern against dark woods, patterns in sand, one glowing backlit leaf. These need only a patch of good light, not a good sky.</li>
+  </ul>
+
+  <div class="fig-row">
+    <figure>
+      <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Forest%20In%20Mist%20(54328980).jpeg?width=800" alt="Forest fading into mist, atmospheric layers" loading="lazy">
+      <figcaption><strong>Atmosphere = depth:</strong> fog separates a flat forest into receding tonal layers — no editing required. <a href="https://commons.wikimedia.org/wiki/File:Forest_In_Mist_(54328980).jpeg">Wikimedia Commons</a></figcaption>
+    </figure>
+    <figure>
+      <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Golden%20hour%20at%20bekol%20savannah.jpg?width=800" alt="Golden hour over savannah" loading="lazy">
+      <figcaption><strong>Edge-of-day light:</strong> long shadows give terrain its shape; midday sun erases it. <a href="https://commons.wikimedia.org/wiki/File:Golden_hour_at_bekol_savannah.jpg">Wikimedia Commons</a></figcaption>
+    </figure>
+  </div>
+
+  <div class="exercise">
+    <div class="ex-top"><h4>Exercise 4.1 — Sky-or-land drill</h4><span class="chip time">⏱ 60 min, golden hour</span><span class="chip gear">camera only</span></div>
+    <p>At one viewpoint, shoot every scene twice: once favoring sky (horizon low), once favoring land (horizon high). At home, pick the stronger of each pair and articulate why. You're training the commit-don't-split instinct.</p>
+  </div>
+
+  <div class="exercise">
+    <div class="ex-top"><h4>Exercise 4.2 — The intimate landscape</h4><span class="chip time">⏱ 60 min, overcast day</span><span class="chip gear">camera only</span></div>
+    <p>12 frames, none containing sky or horizon. Forest floor, water edges, rock faces, backlit foliage. Overcast light is your softbox — colors will be deeper than on any sunny day.</p>
+  </div>
+
+  <div class="exercise">
+    <div class="ex-top"><h4>Assignment 4 — One place, three moods</h4><span class="chip time">⏱ 3 short outings</span><span class="chip gear">camera + looks dial</span></div>
+    <p>Photograph the same natural location in three different conditions (e.g., morning fog, harsh noon, golden evening), matching the dial look to each mood (cool Vintage for fog, B&amp;W for harsh noon graphics, warm Vintage for evening). Deliver 3 images per mood — nine frames that feel like three different worlds.</p>
+  </div>
+</section>
+
+<!-- ============ MODULE 5 ============ -->
+<section class="module" id="m5">
+  <div class="module-head">
+    <span class="mnum">MODULE 5</span>
+    <h2>Street &amp; urban</h2>
+    <div class="meta">~2 weeks · downtown, markets, transit · gear: camera; optional black mist for neon nights</div>
+  </div>
+
+  <p>A small, silent-able, screen-free camera is a street photographer's dream: nobody takes it seriously, and you're never staring at a screen instead of the street. With fixed focus and zero shutter lag excuses, the CS-Pro works like the classic zone-focused film compacts — <strong>see, raise, press</strong>.</p>
+
+  <h3>Field craft</h3>
+  <ul>
+    <li><strong>Fish, don't hunt.</strong> Find a good stage — strong light, clean background, a shaft of sun between buildings — and wait for an actor to walk into it. This beats chasing moments, and it's how the wide lens (which needs you close) stays candid: <em>you're</em> already in position, minding your own business.</li>
+    <li><strong>The 6–12 ft zone.</strong> At 22.5&nbsp;mm, street subjects read well at 6–12 ft. Farther and they're specks; remember everything past 3 ft is sharp, so there's no focus excuse for hanging back except nerve.</li>
+    <li><strong>Shoot the city itself.</strong> Non-portrait street is rich: signage, storefronts, shadows of pedestrians rather than pedestrians, gestures cropped at the neck down, bikes, queues of objects, reflections in shop glass.</li>
+    <li><strong>Hip shooting</strong> (Module 3) shines here — camera at waist level, tilted slightly up, three frames per scene. Review at home like opening presents.</li>
+    <li><strong>Night + xenon = the "party flash" look.</strong> The hard, fast xenon flash freezes foreground subjects against dark or dim backgrounds — the gritty direct-flash aesthetic of '90s compacts. Keep subjects 4–8 ft away (closer overexposes, per reviewers), prefer auto-flash over forced, and hunt for reflective surfaces: wet streets, chrome, signage.</li>
+    <li><strong>Vintage looks love cities.</strong> The warm look flatters brick and evening bustle; the cool look suits glass, concrete, and rain; B&amp;W strips distracting colored clutter from busy scenes.</li>
+  </ul>
+
+  <div class="fig-row">
+    <figure>
+      <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Pedestrians%20crossing%20downtown%20street%2C%20Seattle%2C%20ca%201917-ca%201920%20(SEATTLE%204528).jpg?width=800" alt="Vintage photo of pedestrians crossing a downtown street" loading="lazy">
+      <figcaption><strong>The stage method, 1917:</strong> position on a corner, let the crossing tide deliver the picture. Street craft hasn't changed in a century. <a href="https://commons.wikimedia.org/wiki/File:Pedestrians_crossing_downtown_street,_Seattle,_ca_1917-ca_1920_(SEATTLE_4528).jpg">Wikimedia Commons</a></figcaption>
+    </figure>
+    <figure>
+      <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Dotonbori%2C%20Osaka%2C%20at%20night%2C%20November%202016.jpg?width=800" alt="Dotonbori Osaka neon signs at night" loading="lazy">
+      <figcaption><strong>Neon nights:</strong> dense signage gives dim scenes enough light to shoot — and is the black mist filter's favorite subject (Module 8). <a href="https://commons.wikimedia.org/wiki/File:Dotonbori,_Osaka,_at_night,_November_2016.jpg">Wikimedia Commons</a></figcaption>
+    </figure>
+  </div>
+
+  <div class="callout">
+    <span class="co-title">⚖️ Courtesy &amp; law</span>
+    Photographing people in public is generally legal in the US, but non-portrait street doesn't need faces at all: shadows, silhouettes, crowds as texture, and the built city are richer subjects for this curriculum. If someone objects, smile, thank them, move on.
+  </div>
+
+  <div class="exercise">
+    <div class="ex-top"><h4>Exercise 5.1 — The stage</h4><span class="chip time">⏱ 60 min</span><span class="chip gear">camera only</span></div>
+    <p>Find one patch of dramatic urban light (a sunbeam between buildings, a glowing storefront). Stay 30 minutes. Shoot 15 frames as different elements enter: a bicycle, a dog, a shadow, a pigeon. One stage, many plays.</p>
+  </div>
+
+  <div class="exercise">
+    <div class="ex-top"><h4>Exercise 5.2 — City alphabet</h4><span class="chip time">⏱ 60–90 min</span><span class="chip gear">camera only</span></div>
+    <p>Collect 12 urban graphics: signage fragments, painted arrows, hydrants, peeling posters, manhole covers, shadows on brick. Fill the frame (3-ft rule!). Switch to B&amp;W on the dial for half — notice which subjects survive without color.</p>
+  </div>
+
+  <div class="exercise">
+    <div class="ex-top"><h4>Assignment 5 — Flash after dark</h4><span class="chip time">⏱ one evening outing</span><span class="chip gear">camera + flash (auto)</span></div>
+    <p>An evening "roll" of 24 frames using flash deliberately: storefront still lifes, wet pavement, bikes, textures at 4–8 ft. Study which distances the xenon exposes well — you're building a personal flash range table no manual can give you.</p>
+  </div>
+</section>
+
+<!-- ============ MODULE 6 ============ -->
+<section class="module" id="m6">
+  <div class="module-head">
+    <span class="mnum">MODULE 6</span>
+    <h2>Abstract &amp; detail</h2>
+    <div class="meta">~1–2 weeks · everywhere, esp. after rain · gear: camera; red filter cameo</div>
+  </div>
+
+  <p>Abstraction means photographing <strong>light, shape, texture, and color as the subject itself</strong>. It's the most forgiving genre for a fixed-focus camera — no decisive moment, no sharpness anxiety — and the most demanding of your eye. Remember the one physical limit: nothing sharp closer than ~3 ft, so "detail" on the CS-Pro means <em>medium-scale</em> texture (a door's worth, not a coin's worth).</p>
+
+  <h3>Four abstract engines</h3>
+  <ul>
+    <li><strong>Texture + raking light.</strong> Side-light at a shallow angle turns peeling paint, bark, rust, and stone into relief maps. The hour before sunset raking across a wall is a texture factory.</li>
+    <li><strong>Shadow play.</strong> Photograph the shadow, not the thing: railings on stairs, leaves on pavement, your own bike's shadow. Hard midday sun — bad for landscapes — is <em>prime time</em> here. The B&amp;W dial position removes color's distraction and doubles the graphic punch.</li>
+    <li><strong>Reflections.</strong> Puddles, glass, chrome, wet asphalt. Flip the world: get the camera inches above the puddle (the reflection is optically far away, so the 3-ft rule doesn't apply to it — the mirrored scene stays sharp).</li>
+    <li><strong>Deliberate imperfection.</strong> At dusk the 1/30 s floor lets you pan with passing cars or sweep the camera through leaves for painterly smears. Misuse the camera on purpose; review at home; keep the accidents that sing.</li>
+  </ul>
+
+  <div class="fig-row">
+    <figure>
+      <img src="https://commons.wikimedia.org/wiki/Special:FilePath/42%20Grunge%20texture%20photo%20-%20cracked%20peeling%20paint%20rusty%20gate%20background.jpg?width=800" alt="Cracked peeling paint on rusty gate, texture abstract" loading="lazy">
+      <figcaption><strong>Texture as subject:</strong> fill the frame edge-to-edge; let color and decay carry the picture. <a href="https://commons.wikimedia.org/wiki/File:42_Grunge_texture_photo_-_cracked_peeling_paint_rusty_gate_background.jpg">Wikimedia Commons</a></figcaption>
+    </figure>
+    <figure>
+      <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Albi-cathedral-stone-stairs-window-light.jpg?width=800" alt="Window light falling across stone stairs" loading="lazy">
+      <figcaption><strong>Shadow play:</strong> the picture is the light itself — the stairs are just its canvas. <a href="https://commons.wikimedia.org/wiki/File:Albi-cathedral-stone-stairs-window-light.jpg">Wikimedia Commons</a></figcaption>
+    </figure>
+  </div>
+
+  <figure>
+    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Puddle%20reflection%20(explore)%20-%20Flickr%20-%20Maria%20Eklind%20(1).jpg?width=1000" alt="City reflected in a street puddle" loading="lazy">
+    <figcaption><strong>The puddle trick:</strong> camera nearly touching the water, world turned upside down. After rain, every street is a mirror shop. <a href="https://commons.wikimedia.org/wiki/File:Puddle_reflection_(explore)_-_Flickr_-_Maria_Eklind_(1).jpg">Wikimedia Commons</a></figcaption>
+  </figure>
+
+  <div class="exercise">
+    <div class="ex-top"><h4>Exercise 6.1 — Ten textures, one hour of sun</h4><span class="chip time">⏱ 60 min, low sun</span><span class="chip gear">camera only</span></div>
+    <p>Ten surfaces in raking light, frame filled, camera square to the surface (tilt = distortion on a wide lens; here you want flatness). Shoot each in color and B&amp;W. Which textures need color? Which are stronger without it?</p>
+  </div>
+
+  <div class="exercise">
+    <div class="ex-top"><h4>Exercise 6.2 — Shadows only</h4><span class="chip time">⏱ 45 min, midday</span><span class="chip gear">camera, B&amp;W dial</span></div>
+    <p>12 frames where the shadow is the subject and its owner is excluded or incidental. Bonus: thread on the <strong>red filter</strong> with the B&amp;W look — it darkens the blue-lit shadows relative to sunlit areas, making the graphic contrast even harder (a preview of Module 9).</p>
+  </div>
+
+  <div class="exercise">
+    <div class="ex-top"><h4>Assignment 6 — "Unrecognizable"</h4><span class="chip time">⏱ one outing + edit</span><span class="chip gear">camera only</span></div>
+    <p>Make 8 photographs where a viewer can't immediately name the subject — through crops, reflections, shadows, or blur — but each one has a clear graphic idea (line, shape, rhythm, color block). Show a friend; if they say "what is it?" <em>and keep looking</em>, you've succeeded.</p>
+  </div>
+</section>
+
+<!-- ============ MODULE 7 ============ -->
+<section class="module" id="m7">
+  <div class="module-head">
+    <span class="mnum">MODULE 7</span>
+    <h2>Still life &amp; found objects</h2>
+    <div class="meta">~1 week · home, table by a window, garage sales · gear: camera; white mist cameo</div>
+  </div>
+
+  <p>Still life is the genre where you finally control <em>everything</em> — subject, background, and light — which makes it the perfect laboratory for the skills from Modules 1–2. But the CS-Pro imposes two honest constraints: you must stay <strong>≥ 3 ft away</strong>, and the wide lens will include lots of surroundings. So think less "macro tabletop" and more <strong>environmental still life</strong>: the scene around the object is part of the picture. Design it.</p>
+
+  <h3>Building a CS-Pro still life</h3>
+  <ol>
+    <li><strong>Find north-window light.</strong> A big window with no direct sun is a giant softbox. Put the table beside it; light rakes across from one side.</li>
+    <li><strong>Go bigger than you think.</strong> Arrangements should span 1–3 ft (jugs, boots, tools, plants, a whole breakfast — not a single ring). Small objects: cluster them.</li>
+    <li><strong>Work the angles.</strong> Straight-down "flat lay" from 3–4 ft above the table works beautifully with a wide lens and sidesteps background problems entirely. For eye-level setups, hang or drape a plain cloth 2–3 ft behind the arrangement.</li>
+    <li><strong>One hero, supporting cast.</strong> Give the arrangement a clear subject, an odd number of elements, and a triangle or diagonal flow. Steal shamelessly from Dutch paintings.</li>
+    <li><strong>Dial the mood:</strong> warm Vintage for kitchen/harvest scenes, B&amp;W for chiaroscuro (one window, dark room, black cloth), cool Vintage for glass and metal. A <strong>white mist filter</strong> over window light adds a soft period-photograph bloom — see Module 8.</li>
+  </ol>
+
+  <figure>
+    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Still%20life%20with%20strawberries%20in%20a%20crystal%20bowl.jpg?width=1000" alt="Still life with strawberries in a crystal bowl in soft directional light" loading="lazy">
+    <figcaption><strong>Window-light still life:</strong> one soft directional source, a dark ground, a clear hero. Composition and light do all the work — no gear required. <a href="https://commons.wikimedia.org/wiki/File:Still_life_with_strawberries_in_a_crystal_bowl.jpg">Wikimedia Commons</a></figcaption>
+  </figure>
+
+  <div class="callout">
+    <span class="co-title">💡 The found still life</span>
+    Half this genre lives outdoors: tools left on a workbench, firewood stacks, garden hoses, tackle boxes, camp kitchens, market produce. "Found" arrangements photographed respectfully (move nothing, or move one thing) train the same eye with zero setup — and suit the camera's grab-and-go spirit.
+  </div>
+
+  <div class="exercise">
+    <div class="ex-top"><h4>Exercise 7.1 — One object, five setups</h4><span class="chip time">⏱ 60 min indoors</span><span class="chip gear">camera + window</span></div>
+    <p>Choose one photogenic object (kettle, boot, lantern). Shoot it: (1) window-side light, (2) backlit against the window, (3) flat lay from above, (4) B&amp;W chiaroscuro with dark cloth, (5) with flash, on purpose. Five different pictures of one thing = a masterclass in light direction.</p>
+  </div>
+
+  <div class="exercise">
+    <div class="ex-top"><h4>Exercise 7.2 — Found still life walk</h4><span class="chip time">⏱ 45 min</span><span class="chip gear">camera only</span></div>
+    <p>10 found arrangements, moving at most one element per scene. Garages, porches, market stalls, camp sites. Caption each mentally with a story ("someone just left").</p>
+  </div>
+
+  <div class="exercise">
+    <div class="ex-top"><h4>Assignment 7 — The seasonal table</h4><span class="chip time">⏱ 2 sessions</span><span class="chip gear">camera + window + cloth</span></div>
+    <p>Design and photograph one deliberate still life that says "this season" (summer fruit, trail gear, harvest, rain jackets and thermos) — minimum 20 frames exploring angle, distance, and dial looks; deliver your best 2. Iteration, not inspiration, is the lesson.</p>
+  </div>
+</section>
+<!-- ============ PART III ============ -->
+<div class="part-divider">
+  <div class="rope">· · · 🔭 · · ·</div>
+  <h2>Part III — Filter Craft</h2>
+  <p>Your three screw-on filters — and the camera's replaceable digital film looks — are the only "settings" this camera will ever have. Learn them like lenses.</p>
+</div>
+
+<!-- ============ MODULE 8 ============ -->
+<section class="module" id="m8">
+  <div class="module-head">
+    <span class="mnum">MODULE 8</span>
+    <h2>Mist &amp; diffusion: white vs. black</h2>
+    <div class="meta">~1–2 weeks · backlit scenes, evenings, window light · gear: camera + both mist filters</div>
+  </div>
+
+  <p>Diffusion filters have microscopic particles in the glass that <strong>catch light and spread it</strong>: highlights bloom into halos, hard edges soften, and digital crispness melts into something filmic. On a camera that already leans nostalgic, mist filters push the look from "retro digicam" to "found footage from a dream." The two types behave differently, and knowing <em>when to reach for which</em> is the entire skill:</p>
+
+  <div class="table-scroll">
+  <table>
+    <tr><th></th><th>⚪ White mist</th><th>⚫ Black mist</th></tr>
+    <tr><td><strong>Highlights</strong></td><td>Strong, wide, dreamy halation</td><td>Gentler, tighter glow around lights</td></tr>
+    <tr><td><strong>Shadows &amp; contrast</strong></td><td>Lifts shadows too — overall contrast drops, image goes airy/foggy</td><td>Keeps blacks black — contrast largely survives</td></tr>
+    <tr><td><strong>Overall strength</strong></td><td>Loud. The effect <em>is</em> the picture</td><td>Subtle. Viewers feel it more than see it</td></tr>
+    <tr><td><strong>Best CS-Pro subjects</strong></td><td>Backlit nature, window-light still life, hazy golden-hour scenes, high-key minimalism</td><td>Neon &amp; city lights at dusk, sun stars through trees, everyday scenes needing a filmic edge</td></tr>
+    <tr><td><strong>Worst case</strong></td><td>Flat gray mush on overcast days (no highlights to bloom, shadows lifted anyway)</td><td>Nearly invisible in soft frontal light — save it for scenes with light sources</td></tr>
+  </table>
+  </div>
+
+  <div class="callout camera">
+    <span class="co-title">📷 CS-Pro specifics</span>
+    <strong>Mist filters need light sources or strong highlights in (or just outside) the frame to do anything.</strong> The sun through leaves, a bright window, neon, lamps, sparkle on water — that's the fuel. Two camera notes: the optical viewfinder won't show you the effect (trust the principles, verify at download), and the light loss is negligible, so mist filters work at any hour — unlike your red filter.
+  </div>
+
+  <figure>
+    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Mist%20in%20the%20trees%20on%20May%20Hill%20-%20geograph.org.uk%20-%20278234.jpg?width=1000" alt="Sunlight blooming through misty trees" loading="lazy">
+    <figcaption><strong>What diffusion feels like:</strong> natural mist blooming backlight through trees — your white mist filter manufactures this glow on clear days; the black mist gives a restrained version that keeps the shadows honest. <a href="https://commons.wikimedia.org/wiki/File:Mist_in_the_trees_on_May_Hill_-_geograph.org.uk_-_278234.jpg">Wikimedia Commons</a></figcaption>
+  </figure>
+
+  <h3>Pairing filters with the looks dial</h3>
+  <ul>
+    <li><strong>White mist + warm Vintage:</strong> maximum nostalgia — summer-memory, home-movie light. Ideal for golden hour nature and still life.</li>
+    <li><strong>Black mist + cool Vintage:</strong> the "cinematic" recipe — halated practicals, intact shadows, moody color. Ideal for dusk streets and neon.</li>
+    <li><strong>Black mist + B&amp;W:</strong> classic silver-screen halation, like old movie stills.</li>
+    <li><strong>White mist + B&amp;W:</strong> pictorialist, early-1900s softness — beautiful for minimal, high-key scenes; too soupy for detailed ones.</li>
+  </ul>
+
+  <div class="exercise">
+    <div class="ex-top"><h4>Exercise 8.1 — The A/B/C ritual</h4><span class="chip time">⏱ 60 min, sunny evening</span><span class="chip gear">camera + both mists</span></div>
+    <p>Five backlit or light-source scenes. Shoot each three times from a braced, identical position: bare lens, black mist, white mist (log the order!). Build side-by-side triptychs at home. This one session teaches you more about your specific filters than any article — densities vary by brand, and yours are the only ones that matter.</p>
+  </div>
+
+  <div class="exercise">
+    <div class="ex-top"><h4>Exercise 8.2 — Lights at dusk</h4><span class="chip time">⏱ 60 min, blue hour</span><span class="chip gear">camera + black mist</span></div>
+    <p>Shoot storefronts, string lights, headlight streams, and neon with the black mist. Vary your angle to the lights (facing them = big halos; lights at frame edge = gentle wash). Brace against poles — the shutter will be at its 1/30 s floor.</p>
+  </div>
+
+  <div class="exercise">
+    <div class="ex-top"><h4>Assignment 8 — One story, one mist</h4><span class="chip time">⏱ one outing + edit</span><span class="chip gear">camera + one mist (your choice)</span></div>
+    <p>Choose the filter that suits your subject and shoot a 6-image sequence with a consistent dreamy or cinematic mood: "morning at the lake," "main street at dusk." The test of success: the six images feel like stills from the same film.</p>
+  </div>
+</section>
+
+<!-- ============ MODULE 9 ============ -->
+<section class="module" id="m9">
+  <div class="module-head">
+    <span class="mnum">MODULE 9</span>
+    <h2>The red filter: dramatic black &amp; white</h2>
+    <div class="meta">~1–2 weeks · bright sunny days with clouds · gear: camera + red filter, B&amp;W dial</div>
+  </div>
+
+  <p>A red filter passes red light and blocks blue and green. In black &amp; white, that means: <strong>blue skies go nearly black, white clouds detonate against them, atmospheric haze vanishes, foliage darkens, and red/orange subjects (brick, rust, canyon rock) glow bright</strong>. It's the classic recipe behind dramatic mid-century landscape photography — and your CS-Pro's B&amp;W dial position turns it into a point-and-shoot superpower.</p>
+
+  <div class="fig-row">
+    <figure>
+      <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Infrared%20All%20Saints%20church%20Edingthorpe%20Norfolk%20(2935872338).jpg?width=800" alt="Infrared black and white church with black sky and glowing foliage" loading="lazy">
+      <figcaption><strong>The effect, exaggerated:</strong> this infrared image is the red-filter look turned to eleven — near-black sky, luminous clouds. Your #25-style red filter delivers a strong step in this direction. <a href="https://commons.wikimedia.org/wiki/File:Infrared_All_Saints_church_Edingthorpe_Norfolk_(2935872338).jpg">Wikimedia Commons</a></figcaption>
+    </figure>
+    <figure>
+      <img src="https://commons.wikimedia.org/wiki/Special:FilePath/24%20June%202012%20Infrared%20HDR%20Colorado%20Springs%20(7434067518).jpg?width=800" alt="Infrared landscape with dramatic dark sky, Colorado Springs" loading="lazy">
+      <figcaption><strong>Sky as protagonist:</strong> when blue drops to black, clouds become the drama. Shoot with the sun behind or beside you for the deepest skies. <a href="https://commons.wikimedia.org/wiki/File:24_June_2012_Infrared_HDR_Colorado_Springs_(7434067518).jpg">Wikimedia Commons</a></figcaption>
+    </figure>
+  </div>
+
+  <h3>How tones translate</h3>
+  <div class="table-scroll">
+  <table>
+    <tr><th>Real-world color</th><th>Through red filter (in B&amp;W)</th><th>Creative consequence</th></tr>
+    <tr><td>Blue sky</td><td>Very dark gray → near black</td><td>Clouds pop; skies gain weight and menace</td></tr>
+    <tr><td>White clouds / snow</td><td>Bright, fully detailed</td><td>Maximum cloud drama; wait for cumulus days</td></tr>
+    <tr><td>Green foliage / grass</td><td>Darker than expected</td><td>Forests go somber; backlit leaves still glow</td></tr>
+    <tr><td>Red brick, rust, canyon rock</td><td>Light, luminous</td><td>Red subjects separate beautifully from sky and foliage</td></tr>
+    <tr><td>Haze / distant atmosphere</td><td>Cut dramatically</td><td>Distant ridgelines sharpen; long views regain contrast</td></tr>
+    <tr><td>Blue water</td><td>Dark, inky</td><td>Lakes and sea turn dramatic; sparkle highlights stand out</td></tr>
+  </table>
+  </div>
+
+  <div class="callout camera">
+    <span class="co-title">📷 CS-Pro specifics — read before your first outing</span>
+    <ul style="margin-bottom:0">
+      <li><strong>A red filter eats ~3 stops of light.</strong> The auto-exposure will compensate by slowing the shutter and raising gain — fine in full sun, grainy and shake-prone in shade or evening. <em>Rule: red filter = bright daylight only.</em> The "bad" harsh midday light other modules avoid is exactly when this filter works best.</li>
+      <li><strong>Set the dial to B&amp;W first, then thread the filter.</strong> Shot in color through a red filter, everything is just… red. (Shoot one on purpose — the monochrome-red look is its own experiment.)</li>
+      <li><strong>Your viewfinder stays clear.</strong> Because it's not through-the-lens, you compose normally while the lens sees deep red. Film shooters never had it so easy.</li>
+      <li><strong>Custom B&amp;W looks multiply this.</strong> Module 10 covers loading a high-contrast <code>.flt</code> (e.g., an FP4/HP5-inspired curve) into the B&amp;W slot — filter + curve is the full film-landscape recipe.</li>
+    </ul>
+  </div>
+
+  <h3>Learning to see in monochrome</h3>
+  <p>B&amp;W photography is about <strong>tonal contrast, not color contrast</strong>. A red flower on green leaves is vivid in color but — through a red filter — becomes light-on-dark drama; a blue door on gray wall almost disappears. Before each frame ask: "what's my brightest tone, what's my darkest, and do they touch?" If the answer is "everything's middle gray," walk on.</p>
+
+  <div class="exercise">
+    <div class="ex-top"><h4>Exercise 9.1 — Filter on, filter off</h4><span class="chip time">⏱ 45 min, sunny + clouds</span><span class="chip gear">camera + red filter, B&amp;W dial</span></div>
+    <p>Eight scenes with sky in them, each shot twice: B&amp;W bare lens, then B&amp;W + red filter, identical framing. The pairs will teach you exactly what your filter's strength does to sky, cloud, skin of buildings, and foliage.</p>
+  </div>
+
+  <div class="exercise">
+    <div class="ex-top"><h4>Exercise 9.2 — Red renaissance</h4><span class="chip time">⏱ 60 min</span><span class="chip gear">camera + red filter</span></div>
+    <p>Hunt subjects that a red filter <em>lightens</em>: brick walls, rusted metal, red barns, terracotta, autumn leaves. Compose them against darkened skies or foliage — you're painting with the filter's tonal flip.</p>
+  </div>
+
+  <div class="exercise">
+    <div class="ex-top"><h4>Assignment 9 — The dramatic land</h4><span class="chip time">⏱ one bright outing + edit</span><span class="chip gear">camera + red filter</span></div>
+    <p>A 24-frame B&amp;W landscape "roll" on a day with real clouds: big skies, strong foregrounds (Module 3), tonal thinking throughout. Deliver 4 finals. Optional wildcard: stack <strong>black mist + red</strong> for two frames — halated highlights over inky skies is a look almost nobody has seen from a $99 camera.</p>
+  </div>
+</section>
+
+<!-- ============ MODULE 10 ============ -->
+<section class="module" id="m10">
+  <div class="module-head">
+    <span class="mnum">MODULE 10</span>
+    <h2>Digital film looks: mastering the .flt system</h2>
+    <div class="meta">~1–2 weeks · desk + field testing · gear: camera, USB-C cable, computer</div>
+  </div>
+
+  <p>Every position on the CS-Pro's dial — Standard, Vintage&nbsp;1, Vintage&nbsp;2, B&amp;W — is just the camera reading a small file from its memory: <code>std.flt</code>, <code>vtg1.flt</code>, <code>vtg2.flt</code>, or <code>bw.flt</code>. A <strong><code>.flt</code> file is a plain-text recipe of tone and color transformations</strong> — essentially a lookup table (LUT) — that the firmware loads at power-on and bakes into every JPEG as you shoot. Replace the file, restart the camera, and that dial position becomes a different film stock. This is the closest thing the CS-Pro has to interchangeable film — and it turns a four-look camera into an infinite-look camera.</p>
+
+  <h3>What a .flt can and cannot do</h3>
+  <div class="table-scroll">
+  <table>
+    <tr><th>✅ A .flt controls</th><th>❌ A .flt cannot change</th></tr>
+    <tr><td><strong>Tone curve</strong> — brightness, contrast, lifted "faded film" blacks, rolled-off highlights</td><td><strong>Grain</strong> — the sensor's native grain is always there (part of the charm)</td></tr>
+    <tr><td><strong>Color balance</strong> — overall shifts and split-tone effects (e.g., warm highlights, teal shadows) via per-channel values</td><td><strong>Sharpness</strong> — fixed by the lens and processor</td></tr>
+    <tr><td><strong>Saturation</strong> — from oversaturated slide-film pop to muted pastels to full monochrome</td><td><strong>Selective hues</strong> — you can't target "only the greens" like a Lightroom HSL panel; shifts are global</td></tr>
+  </table>
+  </div>
+
+  <p>Think of it as choosing a film stock, not editing a photo: global curves plus color character. That constraint is why well-made <code>.flt</code> looks feel like film rather than like a filter app.</p>
+
+  <div class="svg-wrap">
+    <svg viewBox="0 0 760 270" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Diagram of how a .flt tone curve remaps the camera's tones">
+      <defs>
+        <linearGradient id="rampIn" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0" stop-color="#000000"/><stop offset="1" stop-color="#ffffff"/>
+        </linearGradient>
+        <linearGradient id="rampOut" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0" stop-color="#2b2622"/><stop offset=".45" stop-color="#8d7a63"/><stop offset="1" stop-color="#fdf3e0"/>
+        </linearGradient>
+      </defs>
+      <text x="40" y="30" font-family="Georgia,serif" font-size="15" fill="#3a5a34" font-weight="bold">1 · What the sensor sees</text>
+      <rect x="40" y="42" width="200" height="34" rx="5" fill="url(#rampIn)" stroke="#26261f" stroke-width="1.5"/>
+      <text x="40" y="98" font-family="Georgia,serif" font-size="12.5" fill="#6d6a5c" font-style="italic">a neutral black-to-white ramp</text>
+      <text x="300" y="30" font-family="Georgia,serif" font-size="15" fill="#3a5a34" font-weight="bold">2 · The .flt curve remaps it</text>
+      <rect x="300" y="42" width="160" height="160" fill="#fbf9f1" stroke="#d8d2bd" stroke-width="1.5"/>
+      <line x1="300" y1="202" x2="460" y2="42" stroke="#d8d2bd" stroke-width="1.5" stroke-dasharray="4 4"/>
+      <path d="M 300 182 C 340 178, 350 130, 380 110 S 440 58, 460 54" fill="none" stroke="#c25c33" stroke-width="3.5"/>
+      <text x="300" y="222" font-family="Georgia,serif" font-size="12.5" fill="#6d6a5c" font-style="italic">lifted blacks · gentle highlight shoulder</text>
+      <text x="520" y="30" font-family="Georgia,serif" font-size="15" fill="#3a5a34" font-weight="bold">3 · What the JPEG gets</text>
+      <rect x="520" y="42" width="200" height="34" rx="5" fill="url(#rampOut)" stroke="#26261f" stroke-width="1.5"/>
+      <text x="520" y="98" font-family="Georgia,serif" font-size="12.5" fill="#6d6a5c" font-style="italic">faded warm "film" tones — baked in</text>
+      <line x1="250" y1="59" x2="292" y2="59" stroke="#6a8a5a" stroke-width="2.5" marker-end="none"/>
+      <polygon points="292,54 302,59 292,64" fill="#6a8a5a"/>
+      <line x1="468" y1="59" x2="510" y2="59" stroke="#6a8a5a" stroke-width="2.5"/>
+      <polygon points="510,54 520,59 510,64" fill="#6a8a5a"/>
+      <text x="40" y="256" font-family="Georgia,serif" font-size="13" fill="#6d6a5c" font-style="italic">The ramp-editing method makes this literal: however you edit a neutral gradient in your photo editor is exactly how the camera will treat every tone in every photo.</text>
+    </svg>
+  </div>
+
+  <h3>Four ways to get new looks — easiest to most powerful</h3>
+  <div class="table-scroll">
+  <table>
+    <tr><th>Route</th><th>How it works</th><th>Best for</th></tr>
+    <tr>
+      <td><strong>1 · Download ready-made</strong></td>
+      <td>Community libraries offer finished <code>.flt</code> files: <a href="https://www.campshades.com/">Camp Shades</a> (its free <em>Kino Control</em> comes in four intensity levels — Flat, Gentle, Medium, High) and the CodesThings <em>Lab Archive</em> (23 film emulations, incl. <em>Drugstore Green</em> ≈ 90s Fuji 400 disposable, <em>Pastel Shoulder</em> ≈ Portra 400, <em>Moody Black &amp; White</em> ≈ Ilford FP4, <em>Crimson Dusk</em> ≈ Velvia 100). See <a href="https://www.thephoblographer.com/2026/02/14/review-best-camp-snap-pro-presets/">Phoblographer's CS-Pro preset roundup</a>.</td>
+      <td>Instant results; learning what's possible by studying others' recipes</td>
+    </tr>
+    <tr>
+      <td><strong>2 · The official designer</strong></td>
+      <td><a href="https://filters.campsnapphoto.com/">filters.campsnapphoto.com</a> — Camp Snap's own web tool with <strong>explicit CS-Pro support</strong>: upload one of your photos, adjust the effect with live preview, download the finished <code>.flt</code>.</td>
+      <td>Your first self-made looks; guaranteed model compatibility</td>
+    </tr>
+    <tr>
+      <td><strong>3 · The ramp method</strong></td>
+      <td><a href="https://campersnapper.com/">Camper Snapper</a>'s trick: download its <code>Ramp.png</code> — a 1×259-pixel black-to-white gradient with RGB markers — open it in <em>any</em> editor (Photoshop, Affinity, free RawTherapee), apply curves/color/contrast, and upload the edited ramp; the site extracts the RGB, saturation, and hue shifts and generates the filter. Your full editor toolkit becomes a filter designer.</td>
+      <td>Precise, repeatable designs; photographers who already think in curves</td>
+    </tr>
+    <tr>
+      <td><strong>4 · The LUT pipeline</strong></td>
+      <td>Grade a CS-Pro photo in Lightroom, Capture One, or DaVinci Resolve; export the grade as a standard LUT (<code>.cube</code>/<code>.png</code>); convert it with the free <a href="https://peterm776.github.io/lut-to-campsnap/">LUT-to-CampSnap converter</a>, which shows original/target/converted previews side-by-side.</td>
+      <td>Porting a look you already love — or any of the internet's thousands of free film LUTs</td>
+    </tr>
+  </table>
+  </div>
+
+  <div class="callout camera">
+    <span class="co-title">⚠️ Before you flash your first filter</span>
+    <ul style="margin-bottom:0">
+      <li><strong>Looks are baked in at capture.</strong> There's no RAW file — a photo taken with a bad filter is permanently that photo. Always test a new look on one throwaway "roll" before an outing that matters.</li>
+      <li><strong>Filters are model-specific.</strong> A <code>.flt</code> made for the original V103b (e.g., Milunich Photography's excellent free library of 30+ film emulations) is <em>not</em> guaranteed to work on a CS-Pro. Prefer files labeled CS-Pro, or make your own with the official tool.</li>
+      <li><strong>Back up the factory looks first.</strong> Before overwriting anything, copy any <code>.flt</code> files you find on the camera to a folder on your computer — and know that the <a href="https://www.campsnapphoto.com/pages/filters">official filters page</a> hosts the defaults if you ever need to restore.</li>
+      <li><strong>Naming is strict:</strong> lowercase, exact — <code>std.flt</code>, <code>vtg1.flt</code>, <code>vtg2.flt</code>, <code>bw.flt</code> — in the camera's root directory. Restart the camera after copying; on boot the camera confirms a custom filter has loaded.</li>
+    </ul>
+  </div>
+
+  <h3>Installing and managing a look library</h3>
+  <ol>
+    <li>On your computer, keep a <strong>library folder</strong> of filters under their real names (<code>portra-soft.flt</code>, <code>fp4-highcon.flt</code>…), with a note about each look. Only rename <em>copies</em> to the slot names.</li>
+    <li>Connect the camera by USB-C; it mounts as a drive. Copy the renamed file to the <strong>root directory</strong>, replacing the slot you're changing.</li>
+    <li>Eject, restart the camera, and confirm the custom look loaded.</li>
+    <li>Re-shoot your <strong>Module 0 calibration scene</strong> (same spot, all four dial positions) after every change. Over time this gives you an honest catalog of every look you've ever run — the screen-free camera's version of film-stock test rolls.</li>
+  </ol>
+
+  <h3>Designing looks that work — a starter theory</h3>
+  <ul>
+    <li><strong>Lift the black point → "faded film."</strong> Raising shadows-output slightly is the single most film-like move. Pair with a touch of warmth in the shadows for a sun-aged print feel.</li>
+    <li><strong>Roll off the highlights → protect skies.</strong> A gentle shoulder at the top of the curve tames the CS-Pro's tendency to clip bright skies — the closest you'll get to "dynamic range" on this camera.</li>
+    <li><strong>Split-tone for cinema.</strong> Warm highlights + cool shadows = the teal-orange look; cool highlights + warm shadows = old postcard. Keep shifts small — they're applied to every pixel of every photo.</li>
+    <li><strong>Desaturate before you stylize.</strong> Pulling saturation 10–20% makes almost any curve look more like film and less like an app filter.</li>
+    <li><strong>Design for a purpose, not a preview.</strong> A look that flatters one test photo may fail in other light. The great ones are designed for a <em>situation</em>: "golden-hour trails," "overcast city," "red-filter skies."</li>
+  </ul>
+
+  <p><strong>Suggested CS-Pro loadout for this curriculum:</strong> keep <code>std.flt</code> factory (your control); load a warm, faded film emulation in <code>vtg1.flt</code> (landscape, still life, white-mist pairing); a cool cinematic look in <code>vtg2.flt</code> (street, dusk, black-mist pairing); and a high-contrast Ilford-style curve in <code>bw.flt</code> tuned for red-filter landscapes (Module 9).</p>
+
+  <div class="exercise">
+    <div class="ex-top"><h4>Exercise 10.1 — Borrow before you build</h4><span class="chip time">⏱ 60 min desk + 45 min field</span><span class="chip gear">camera + USB-C</span></div>
+    <ol>
+      <li>Back up the camera's current <code>.flt</code> files to your library folder.</li>
+      <li>Download two ready-made CS-Pro looks (e.g., Kino Control from Camp Shades and one film emulation) and install them in the two Vintage slots.</li>
+      <li>Shoot your calibration scene plus a 12-frame mini-roll alternating dial positions on identical scenes.</li>
+      <li>Review: describe each look in one sentence ("lifted blacks, green shadows, tame highlights"). Reverse-engineering vocabulary is the foundation for designing your own.</li>
+    </ol>
+  </div>
+
+  <div class="exercise">
+    <div class="ex-top"><h4>Exercise 10.2 — Design "Faded Summer," your first original</h4><span class="chip time">⏱ 90 min</span><span class="chip gear">computer + camera</span></div>
+    <p>Using the <a href="https://filters.campsnapphoto.com/">official designer</a> (upload one of your own Module 4 photos as the preview) or the ramp method, build a look to this recipe: black point lifted slightly, highlights rolled off, a touch of warmth overall, saturation −15%. Install it as <code>vtg1.flt</code>, shoot a golden-hour mini-roll, then iterate: adjust the recipe once based on real results and reflash. <strong>Design → shoot → revise</strong> is the whole craft.</p>
+  </div>
+
+  <div class="exercise">
+    <div class="ex-top"><h4>Exercise 10.3 — The red-filter B&amp;W curve</h4><span class="chip time">⏱ 60 min + one sunny outing</span><span class="chip gear">camera + red filter + computer</span></div>
+    <p>Build a punchy monochrome for <code>bw.flt</code>: strong S-curve (deep blacks, bright detailed whites), zero saturation. Then repeat Exercise 9.1's filter-on/filter-off pairs with the new curve. Factory B&amp;W + red filter was good; a curve <em>designed for</em> the red filter's flattened blue channel is the full Ansel-style recipe from a $99 camera.</p>
+  </div>
+
+  <div class="exercise">
+    <div class="ex-top"><h4>Assignment 10 — Your signature stock</h4><span class="chip time">⏱ 2 weeks, ongoing</span><span class="chip gear">everything</span></div>
+    <p>Commit to one self-designed look as your only color look for two full weeks across at least three modules' subjects. Keep a change log (v1, v2, v3…) as you refine it between outings. At the end, name it. Photographers spend years finding "their" film stock — you get to <em>author</em> yours.</p>
+  </div>
+</section>
+
+<!-- ============ PART IV ============ -->
+<div class="part-divider">
+  <div class="rope">· · · 🔥 · · ·</div>
+  <h2>Part IV — The Practice System</h2>
+  <p>Skills fade without a rhythm. This is the maintenance plan.</p>
+</div>
+
+<!-- ============ MODULE 10 ============ -->
+<section class="module" id="m11">
+  <div class="module-head">
+    <span class="mnum">MODULE 11</span>
+    <h2>Projects &amp; the long game</h2>
+    <div class="meta">ongoing · gear: everything you own</div>
+  </div>
+
+  <h3>The weekly rhythm (3–5 hours)</h3>
+  <div class="table-scroll">
+  <table>
+    <tr><th>Session</th><th>Time</th><th>What</th></tr>
+    <tr><td>The Roll</td><td>90–120 min</td><td>One deliberate outing shooting the current module's assignment. 24-frame discipline. Field log in pocket.</td></tr>
+    <tr><td>The Contact Sheet</td><td>45–60 min</td><td>Download, review everything once fast, then slow. Pick 3 keepers. Compare results to your field-log predictions — circle every surprise.</td></tr>
+    <tr><td>The Sketchbook</td><td>2–3 × 20 min</td><td>Micro-sessions: camera on a walk, lunch break, backyard. One compositional device, no pressure. Volume lives here.</td></tr>
+  </table>
+  </div>
+
+  <h3>Self-critique: the five questions</h3>
+  <p>For each keeper, answer honestly:</p>
+  <ul class="checklist">
+    <li>What is the subject — can I name it in three words?</li>
+    <li>What does the light do for this picture that flat light wouldn't?</li>
+    <li>What compositional device carries it, and is there a foreground?</li>
+    <li>What would I exclude if I could reshoot?</li>
+    <li>Would this survive as one of only 24 frames?</li>
+  </ul>
+
+  <h3>Rotate your film stocks</h3>
+  <p>Module 10 made the dial programmable — keep it alive. A sustainable rhythm: revisit your look loadout <strong>once a season</strong> (new light, new palette), keep your library folder and change log current, and re-shoot the calibration scene after every reflash. One custom look per season, refined across many rolls, beats ten downloaded ones.</p>
+
+  <h3>Capstone projects (pick one per season)</h3>
+  <div class="path-grid">
+    <div class="path-card"><h4>📕 The Zine</h4><p>Twenty final images from one theme ("Water," "Rust," "My Street at Dusk") sequenced into a small printed zine or PDF. Sequencing is a composition skill of its own.</p></div>
+    <div class="path-card"><h4>🗓️ 30 Days, 30 Frames</h4><p>One — exactly one — exposure per day for a month. The ultimate screen-free discipline; the month's contact sheet becomes a diary.</p></div>
+    <div class="path-card"><h4>🧭 One Mile Radius</h4><p>Everything within a mile of home, across all four subject modules, until strangers wouldn't believe where it was shot. Constraint of place = depth of seeing.</p></div>
+    <div class="path-card"><h4>🎞️ Three Filters, One Scene</h4><p>A single location shot bare, white mist, black mist, and red+B&amp;W across matched conditions — presented as a study of what glass alone can do.</p></div>
+  </div>
+
+  <h3>Going deeper</h3>
+  <ul>
+    <li><strong>Camera &amp; community:</strong> <a href="https://www.campsnapphoto.com/products/cs-pro-camera">official CS-Pro page</a> · <a href="https://www.campsnapphoto.com/pages/filters">official custom looks</a> · <a href="https://filters.campsnapphoto.com/">official filter designer</a> · <a href="https://campersnapper.com/">Camper Snapper</a> · <a href="https://www.campshades.com/">Camp Shades</a> · <a href="https://peterm776.github.io/lut-to-campsnap/">LUT-to-CampSnap converter</a> · <a href="https://www.thephoblographer.com/2026/02/14/review-best-camp-snap-pro-presets/">Phoblographer's CS-Pro preset roundup</a></li>
+    <li><strong>Reviews worth reading</strong> (to know your tool's character): <a href="https://www.digitalcameraworld.com/cameras/compact-cameras/camp-snap-cs-pro-review-i-finally-found-a-retro-compact-camera-thats-underpriced-not-overpriced">Digital Camera World</a> · <a href="https://www.techradar.com/cameras/compact-cameras/camp-snap-cs-pro-review">TechRadar</a> · <a href="https://amateurphotographer.com/review/camp-snap-cs-pro-review/">Amateur Photographer</a> · <a href="https://petapixel.com/2025/12/11/camp-snap-cs-pro-review-slightly-more-tolerable/">PetaPixel</a></li>
+    <li><strong>Filter theory:</strong> <a href="https://tiffen.com/collections/explore-pro-mist%C2%AE-and-black-pro-mist-camera-filters">Tiffen on Pro-Mist filters</a> · <a href="https://nisioptics.co.uk/difference-between-white-mist-black-mist-filters/">NiSi: white vs black mist</a> · <a href="https://www.photographymad.com/pages/view/using-coloured-filters-in-black-and-white-photography">Colored filters in B&amp;W</a> · <a href="https://thedarkroom.com/color-filters-with-bw-film/">The Darkroom's filter guide</a></li>
+    <li><strong>Masters to study</strong> (all worked with fixed lenses or simple cameras): Ansel Adams (red-filter skies), Saul Leiter (color, reflections, weather), Ernst Haas (color abstraction), Fay Godwin (B&amp;W land), William Eggleston (the ordinary made monumental).</li>
+  </ul>
+</section>
+
+<!-- ============ QUICK REFERENCE ============ -->
+<section class="module" id="quickref">
+  <div class="module-head">
+    <span class="mnum">APPENDIX</span>
+    <h2>Pocket reference</h2>
+  </div>
+  <div class="table-scroll">
+  <table>
+    <tr><th>Situation</th><th>Reach for</th><th>Remember</th></tr>
+    <tr><td>Golden-hour landscape</td><td>Bare lens or white mist · warm Vintage</td><td>Foreground anchor; sky-or-land, never 50/50</td></tr>
+    <tr><td>Harsh midday sun</td><td>Red filter · B&amp;W dial</td><td>The filter's 3-stop cost <em>wants</em> bright light; hunt shadows &amp; skies</td></tr>
+    <tr><td>Overcast / flat light</td><td>Bare lens · any look</td><td>Colors and textures, intimate landscapes; skip mist (no highlights to bloom)</td></tr>
+    <tr><td>Dusk city lights / neon</td><td>Black mist · cool Vintage</td><td>Brace! Shutter at 1/30 s floor; halos biggest facing the lights</td></tr>
+    <tr><td>Window still life</td><td>White mist or bare · warm Vintage or B&amp;W</td><td>Stay 3 ft back; arrangements 1–3 ft wide; flat lay from above</td></tr>
+    <tr><td>Night street energy</td><td>Flash (auto) · Standard or B&amp;W</td><td>Subjects 4–8 ft; wet surfaces double the flash</td></tr>
+    <tr><td>Big cloud drama</td><td>Red filter · B&amp;W (+ black mist wildcard)</td><td>Sun behind/beside you for blackest sky</td></tr>
+    <tr><td>Factory looks feel stale</td><td>Custom <code>.flt</code> looks (Module 10)</td><td>Lowercase slot names · restart camera · test roll before it matters — looks bake in</td></tr>
+    <tr><td>Anything, always</td><td>—</td><td>≥ 3 ft to be sharp · lens sees more than finder · meter averages the frame</td></tr>
+  </table>
+  </div>
+</section>
+
+
+</main>
+<footer>
+  <p><strong>The Camp Snap Pro Field School</strong> — a personal learning resource, July 2026.</p>
+  <p>Example photographs are hot-linked from <a href="https://commons.wikimedia.org/">Wikimedia Commons</a>; each caption links to its source page and photographer credit. Camera specifications from <a href="https://www.campsnapphoto.com/products/cs-pro-camera">Camp Snap</a> and published reviews. An internet connection is required for the example images; all text works offline.</p>
+</footer>
+</body>
+</html>
