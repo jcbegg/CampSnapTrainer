@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Field School Workbook — Camp Snap Pro</title>
+<style>
+  :root{
+    --pine:#22381f; --forest:#3a5a34; --moss:#6a8a5a; --canvas:#f4f0e4;
+    --paper:#fbf9f1; --bark:#4a3728; --ember:#c25c33; --sun:#e0a437;
+    --ink:#26261f; --faded:#6d6a5c; --line:#d8d2bd; --card:#ffffff;
+    --mono:"Consolas","Menlo",monospace;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:"Segoe UI",system-ui,-apple-system,sans-serif;background:var(--canvas);color:var(--ink);line-height:1.55;font-size:16px}
+  h1,h2,h3,h4{font-family:Georgia,"Iowan Old Style",serif;color:var(--pine);line-height:1.25}
+  button{font-family:inherit;cursor:pointer}
+  textarea,input,select{font-family:inherit;font-size:.92rem;color:var(--ink);background:var(--paper);border:1px solid var(--line);border-radius:6px;padding:7px 10px;width:100%}
+  textarea{resize:vertical;min-height:54px}
+  textarea:focus,input:focus,select:focus{outline:2px solid var(--moss)}
+  label{font-size:.72rem;text-transform:uppercase;letter-spacing:.09em;color:var(--faded);font-weight:600;display:block;margin-bottom:3px}
+
+  header.hero{background:linear-gradient(160deg,var(--pine),var(--forest));color:var(--canvas);padding:26px 20px 20px;text-align:center}
+  header.hero h1{color:#fdfbf2;font-size:clamp(1.3rem,3.5vw,1.9rem)}
+  header.hero p{color:#cdd2b8;font-size:.9rem;margin-top:4px}
+  header.hero a{color:var(--sun)}
+
+  nav.tabs{position:sticky;top:0;z-index:40;background:var(--pine);display:flex;gap:4px;justify-content:center;flex-wrap:wrap;padding:8px 10px;box-shadow:0 2px 8px rgba(0,0,0,.25)}
+  nav.tabs button{background:transparent;border:1px solid transparent;color:#e4e6d4;font-size:.84rem;padding:5px 14px;border-radius:999px}
+  nav.tabs button:hover{border-color:var(--sun);color:var(--sun)}
+  nav.tabs button.on{background:var(--sun);color:var(--pine);font-weight:700}
+
+  main{max-width:980px;margin:0 auto;padding:22px 18px 80px}
+  .view{display:none}
+  .view.on{display:block}
+  .view>h2{margin:10px 0 4px;font-size:1.5rem}
+  .view>.lede{color:var(--faded);font-size:.93rem;margin-bottom:18px}
+
+  .grid{display:grid;gap:14px}
+  .g2{grid-template-columns:1fr 1fr}
+  .g3{grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+  @media(max-width:720px){.g2{grid-template-columns:1fr}}
+
+  .card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:16px 18px;box-shadow:0 2px 8px rgba(38,38,31,.06)}
+  .card h3{font-size:1.02rem;margin-bottom:8px}
+  .muted{color:var(--faded);font-size:.85rem}
+
+  /* progress */
+  .pbar{height:9px;background:var(--canvas);border:1px solid var(--line);border-radius:99px;overflow:hidden}
+  .pbar>div{height:100%;background:linear-gradient(90deg,var(--moss),var(--forest));border-radius:99px;transition:width .3s}
+  .statnum{font-family:Georgia,serif;font-size:1.9rem;color:var(--forest);line-height:1}
+
+  /* module accordion */
+  .mod{background:var(--card);border:1px solid var(--line);border-radius:10px;margin-bottom:12px;overflow:hidden}
+  .mod-head{display:flex;align-items:center;gap:12px;padding:13px 16px;cursor:pointer;user-select:none}
+  .mod-head:hover{background:var(--paper)}
+  .mod-head .mnum{background:var(--forest);color:#fdfbf2;font-family:var(--mono);font-size:.72rem;padding:2px 9px;border-radius:4px;white-space:nowrap}
+  .mod-head h3{flex:1;font-size:1.02rem}
+  .mod-head .mpct{font-family:var(--mono);font-size:.78rem;color:var(--faded);white-space:nowrap}
+  .mod-head .chev{color:var(--moss);transition:transform .2s}
+  .mod.open .chev{transform:rotate(90deg)}
+  .mod-body{display:none;border-top:1px solid var(--line);padding:14px 16px;background:var(--paper)}
+  .mod.open .mod-body{display:block}
+  .mod-body .planlink{font-size:.82rem;margin-bottom:12px;display:inline-block}
+
+  .item{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:12px 14px;margin-bottom:10px}
+  .item-top{display:flex;gap:10px;align-items:flex-start;flex-wrap:wrap}
+  .item-top h4{flex:1;font-size:.95rem;min-width:180px}
+  .chip{font-size:.68rem;font-family:var(--mono);padding:2px 9px;border-radius:999px;background:var(--canvas);border:1px solid var(--line);color:var(--faded);white-space:nowrap}
+  .chip.gear{background:#f3e9df;border-color:#dcc8b4;color:var(--bark)}
+  .item .desc{font-size:.86rem;color:var(--faded);margin:7px 0 9px}
+  .stbtn{border:1.5px solid var(--line);border-radius:999px;font-size:.75rem;padding:3px 12px;background:var(--canvas);color:var(--faded);white-space:nowrap;font-weight:600}
+  .stbtn.s1{background:#fdf3d7;border-color:var(--sun);color:#8a6414}
+  .stbtn.s2{background:#e6efdd;border-color:var(--forest);color:var(--forest)}
+  .item textarea{margin-top:4px;min-height:40px}
+
+  /* entries */
+  .toolbar{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:14px 0}
+  .btn{background:var(--forest);color:#fdfbf2;border:none;border-radius:8px;padding:8px 16px;font-size:.88rem;font-weight:600}
+  .btn:hover{background:var(--pine)}
+  .btn.ghost{background:transparent;color:var(--forest);border:1.5px solid var(--forest)}
+  .btn.warn{background:transparent;color:var(--ember);border:1.5px solid var(--ember)}
+  .entry{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin-bottom:12px}
+  .entry .erow{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px;margin-bottom:10px}
+  .entry .erow.wide{grid-template-columns:1fr}
+  .entry .ehead{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;gap:8px}
+  .entry .ehead .etitle{font-family:Georgia,serif;color:var(--forest);font-weight:700;font-size:.95rem}
+  .del{background:none;border:none;color:var(--ember);font-size:.78rem;text-decoration:underline}
+  .gearchecks{display:flex;gap:6px;flex-wrap:wrap}
+  .gearchecks label{display:flex;align-items:center;gap:5px;font-size:.78rem;text-transform:none;letter-spacing:0;background:var(--canvas);border:1px solid var(--line);border-radius:999px;padding:3px 10px;cursor:pointer;margin:0;color:var(--ink);font-weight:500}
+  .gearchecks input{width:auto}
+  .gearchecks label.sel{background:#e6efdd;border-color:var(--forest);color:var(--forest);font-weight:600}
+
+  /* filter lab slots */
+  .slot{border-left:5px solid var(--moss)}
+  .slot .slotname{font-family:var(--mono);font-size:.75rem;color:var(--ember);letter-spacing:.06em}
+
+  .qa{margin-bottom:9px}
+  .qa .q{font-size:.82rem;font-weight:600;color:var(--bark);margin-bottom:3px}
+
+  details.ref{background:var(--card);border:1px solid var(--line);border-radius:10px;margin-bottom:10px;padding:0}
+  details.ref summary{padding:12px 16px;cursor:pointer;font-family:Georgia,serif;font-weight:700;color:var(--forest)}
+  details.ref .refbody{padding:0 16px 14px;font-size:.9rem}
+  details.ref table{width:100%;border-collapse:collapse;font-size:.85rem}
+  details.ref td,details.ref th{border-top:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}
+  details.ref th{color:var(--pine);background:var(--paper)}
+
+  .empty{color:var(--faded);font-style:italic;font-size:.9rem;padding:14px;text-align:center;border:1.5px dashed var(--line);border-radius:10px}
+  footer{max-width:980px;margin:0 auto;padding:0 18px 40px;color:var(--faded);font-size:.8rem;text-align:center}
+  @media print{
+    nav.tabs,.toolbar,.btn,.del,header.hero p{display:none}
+    .view{display:block!important;page-break-before:always}
+    body{background:#fff}
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <h1>🏕️ Field School Workbook</h1>
+  <p>Companion to <a href="camp-snap-pro-learning-plan.html">The Camp Snap Pro Field School</a> — progress saves automatically in this browser; use Data → Export for backups.</p>
+</header>
+
+<nav class="tabs" id="tabs">
+  <button data-v="dash" class="on">Dashboard</button>
+  <button data-v="mods">Modules</button>
+  <button data-v="log">Field Log</button>
+  <button data-v="crit">Critique</button>
+  <button data-v="lab">Filter Lab</button>
+  <button data-v="ref">Reference</button>
+  <button data-v="data">Data</button>
+</nav>
+
+<main>
+
+  <!-- DASHBOARD -->
+  <section class="view on" id="v-dash">
+    <h2>Base camp</h2>
+    <p class="lede">Where you stand, and what to shoot next.</p>
+    <div class="grid g3" id="dash-stats"></div>
+    <div class="card" style="margin-top:14px">
+      <h3>🧭 Next up</h3>
+      <div id="dash-next" class="muted"></div>
+    </div>
+    <div class="card" style="margin-top:14px">
+      <h3>Module progress</h3>
+      <div id="dash-mods"></div>
+    </div>
+    <div class="card" style="margin-top:14px">
+      <h3>🎞️ Current loadout</h3>
+      <div id="dash-loadout" class="muted"></div>
+    </div>
+  </section>
+
+  <!-- MODULES -->
+  <section class="view" id="v-mods">
+    <h2>Modules & exercises</h2>
+    <p class="lede">Tap a status pill to cycle <strong>todo → in field → done</strong>. Notes save as you type. Each module links to its chapter in the training plan.</p>
+    <div id="mods-list"></div>
+  </section>
+
+  <!-- FIELD LOG -->
+  <section class="view" id="v-log">
+    <h2>Field log</h2>
+    <p class="lede">One entry per outing. Fill intent and predictions <em>before</em> you shoot; results and lessons <em>after</em> you download. The gap between the two is where the learning lives.</p>
+    <div class="toolbar"><button class="btn" id="add-outing">＋ New outing</button><span class="muted" id="log-count"></span></div>
+    <div id="log-list"></div>
+  </section>
+
+  <!-- CRITIQUE -->
+  <section class="view" id="v-crit">
+    <h2>Keeper critiques</h2>
+    <p class="lede">Run your best frames through the five questions from Module 11. Be harder on yourself than the internet would be.</p>
+    <div class="toolbar"><button class="btn" id="add-crit">＋ Critique a keeper</button><span class="muted" id="crit-count"></span></div>
+    <div id="crit-list"></div>
+  </section>
+
+  <!-- FILTER LAB -->
+  <section class="view" id="v-lab">
+    <h2>Filter lab</h2>
+    <p class="lede">Track what's flashed to each dial slot, your look library, and every reflash — your version history as a filter designer (Module 10).</p>
+    <h3 style="margin:14px 0 8px">Current loadout</h3>
+    <div class="grid g2" id="slot-cards"></div>
+    <div class="toolbar" style="margin-top:20px"><h3 style="margin:0">Look library</h3><button class="btn" id="add-look">＋ Add look</button></div>
+    <p class="muted" style="margin-bottom:10px">Every .flt you've collected or designed — keep originals under real names in a folder on your computer; only copies get renamed to slot names.</p>
+    <div id="look-list"></div>
+    <div class="toolbar" style="margin-top:20px"><h3 style="margin:0">Reflash log</h3><button class="btn" id="add-flash">＋ Log a reflash</button></div>
+    <div id="flash-list"></div>
+  </section>
+
+  <!-- REFERENCE -->
+  <section class="view" id="v-ref">
+    <h2>Pocket reference</h2>
+    <p class="lede">The plan's cheat sheets, condensed for the field.</p>
+    <div id="ref-list"></div>
+  </section>
+
+  <!-- DATA -->
+  <section class="view" id="v-data">
+    <h2>Your data</h2>
+    <p class="lede">Everything lives in this browser's local storage, tied to this file's location. Export regularly — a JSON backup restores everything on any machine.</p>
+    <div class="grid g2">
+      <div class="card">
+        <h3>Backup & restore</h3>
+        <div class="toolbar" style="margin:10px 0 0">
+          <button class="btn" id="btn-export">⬇ Export JSON</button>
+          <button class="btn ghost" id="btn-import">⬆ Import JSON</button>
+          <input type="file" id="import-file" accept=".json" style="display:none">
+        </div>
+        <p class="muted" style="margin-top:10px" id="data-meta"></p>
+      </div>
+      <div class="card">
+        <h3>Print / reset</h3>
+        <div class="toolbar" style="margin:10px 0 0">
+          <button class="btn ghost" id="btn-print">🖨 Print workbook</button>
+          <button class="btn warn" id="btn-reset">Reset all data…</button>
+        </div>
+        <p class="muted" style="margin-top:10px">Reset asks twice and cannot be undone. Export first.</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+<footer>Field School Workbook · pairs with <em>The Camp Snap Pro Field School</em> learning plan · no internet required</footer>
+
+<script>
+/* ================= DATA MODEL ================= */
+const PLAN = 'camp-snap-pro-learning-plan.html';
+const MODULES = [
+ {id:'m0', num:'0', title:'Meet your CS-Pro', items:[
+   {id:'m0e1', t:'0.1 · Calibration roll', time:'60–90 min', gear:'camera only', d:'Same scene on all 4 dial looks · one subject at 1/2/3/6/15 ft · mostly-sky vs mostly-ground exposure test · viewfinder edge-accuracy test. Review all on computer.'},
+   {id:'m0a', t:'Assignment 0 · 24 frames, no review', time:'one outing', gear:'camera only', d:'One walk, exactly 24 deliberate exposures, say why before each press. Review in one sitting; pick best 3.'}]},
+ {id:'m1', num:'1', title:'Seeing light', items:[
+   {id:'m1e1', t:'1.1 · One subject, four lights', time:'2–3 days', gear:'camera only', d:'One stationary subject shot identically in midday sun, overcast/shade, golden-hour side light, and backlight.'},
+   {id:'m1e2', t:'1.2 · Silhouette hunt', time:'60 min, sunset', gear:'camera only', d:'10 silhouettes of strong shapes against bright sky; shape must read as pure black; keep shapes separated.'},
+   {id:'m1a', t:'Assignment 1 · The same walk, twice', time:'2 outings', gear:'camera only', d:'12 frames on one route at midday; repeat identical framings at golden hour; write one sentence per pair on what the light changed.'}]},
+ {id:'m2', num:'2', title:'Composition', items:[
+   {id:'m2e1', t:'2.1 · One device per outing', time:'6 × 30 min', gear:'camera only', d:'Six mini-walks: 8 frames each of ONLY thirds, leading lines, frames-in-frames, negative space, layers, pattern.'},
+   {id:'m2e2', t:'2.2 · Work the scene', time:'45 min', gear:'camera only', d:'12 genuinely different compositions of one ordinary subject inside a 30-ft circle.'},
+   {id:'m2a', t:'Assignment 2 · Six-frame essay', time:'outing + edit', gear:'camera only', d:'Six pictures of one location using ≥4 devices, sequenced: establishing wide → details → closing image.'}]},
+ {id:'m3', num:'3', title:'The wide fixed lens', items:[
+   {id:'m3e1', t:'3.1 · Three-foot portraits of things', time:'45 min', gear:'camera only', d:'10 objects from minimum sharp distance (~3 ft), each with a deliberately chosen background.'},
+   {id:'m3e2', t:'3.2 · Boot-level / sky-level', time:'45 min', gear:'camera only', d:'20 frames, none at eye level: 10 below knee height, 10 arms overhead. Blind shooting is the point.'},
+   {id:'m3a', t:'Assignment 3 · Foreground or it didn’t happen', time:'one outing', gear:'camera only', d:'Full 24-frame roll; every frame must contain something 3–8 ft from the lens. No exceptions.'}]},
+ {id:'m4', num:'4', title:'Landscape & nature', items:[
+   {id:'m4e1', t:'4.1 · Sky-or-land drill', time:'60 min, golden hr', gear:'camera only', d:'Every scene twice: horizon low (sky wins) and horizon high (land wins). Pick the stronger of each pair; say why.'},
+   {id:'m4e2', t:'4.2 · The intimate landscape', time:'60 min, overcast', gear:'camera only', d:'12 frames with no sky or horizon: forest floor, water edges, rock, backlit foliage.'},
+   {id:'m4a', t:'Assignment 4 · One place, three moods', time:'3 short outings', gear:'camera + dial', d:'Same location in three conditions, dial look matched to each mood; deliver 3 images per mood.'}]},
+ {id:'m5', num:'5', title:'Street & urban', items:[
+   {id:'m5e1', t:'5.1 · The stage', time:'60 min', gear:'camera only', d:'One patch of dramatic urban light; stay 30 min; 15 frames as different elements enter it.'},
+   {id:'m5e2', t:'5.2 · City alphabet', time:'60–90 min', gear:'camera only', d:'12 urban graphics (signs, arrows, hydrants, shadows on brick), frame filled; half on B&W dial.'},
+   {id:'m5a', t:'Assignment 5 · Flash after dark', time:'one evening', gear:'camera + flash', d:'24 evening frames with deliberate xenon flash at 4–8 ft; build your personal flash-range table.'}]},
+ {id:'m6', num:'6', title:'Abstract & detail', items:[
+   {id:'m6e1', t:'6.1 · Ten textures, one hour of sun', time:'60 min, low sun', gear:'camera only', d:'10 surfaces in raking light, camera square to surface, each in color and B&W.'},
+   {id:'m6e2', t:'6.2 · Shadows only', time:'45 min, midday', gear:'B&W dial (+red)', d:'12 frames where the shadow is the subject. Bonus: add the red filter for harder graphic contrast.'},
+   {id:'m6a', t:'Assignment 6 · Unrecognizable', time:'outing + edit', gear:'camera only', d:'8 photos where the subject isn’t nameable at a glance but each has a clear graphic idea.'}]},
+ {id:'m7', num:'7', title:'Still life & found objects', items:[
+   {id:'m7e1', t:'7.1 · One object, five setups', time:'60 min indoors', gear:'camera + window', d:'One object: window side-light, backlit, flat lay, B&W chiaroscuro, and flash-on-purpose.'},
+   {id:'m7e2', t:'7.2 · Found still life walk', time:'45 min', gear:'camera only', d:'10 found arrangements, moving at most one element per scene.'},
+   {id:'m7a', t:'Assignment 7 · The seasonal table', time:'2 sessions', gear:'camera + cloth', d:'One deliberate still life that says "this season"; ≥20 frames exploring angle/distance/looks; deliver best 2.'}]},
+ {id:'m8', num:'8', title:'Mist & diffusion', items:[
+   {id:'m8e1', t:'8.1 · The A/B/C ritual', time:'60 min, sunny eve', gear:'both mists', d:'5 backlit scenes × 3 shots each (bare / black mist / white mist), identical framing, logged order. Build triptychs.'},
+   {id:'m8e2', t:'8.2 · Lights at dusk', time:'60 min, blue hour', gear:'black mist', d:'Storefronts, string lights, neon; vary angle to the lights; brace — shutter at its 1/30s floor.'},
+   {id:'m8a', t:'Assignment 8 · One story, one mist', time:'outing + edit', gear:'one mist', d:'6-image sequence with one consistent dreamy/cinematic mood — six stills from the same film.'}]},
+ {id:'m9', num:'9', title:'Red filter B&W', items:[
+   {id:'m9e1', t:'9.1 · Filter on, filter off', time:'45 min, sun+clouds', gear:'red filter, B&W', d:'8 scenes with sky, each twice: B&W bare, then B&W + red, identical framing. Study the pairs.'},
+   {id:'m9e2', t:'9.2 · Red renaissance', time:'60 min', gear:'red filter', d:'Hunt subjects the filter lightens (brick, rust, terracotta, autumn leaves) against darkened skies/foliage.'},
+   {id:'m9a', t:'Assignment 9 · The dramatic land', time:'bright outing', gear:'red filter', d:'24-frame B&W landscape roll on a clouded sunny day; big skies, strong foregrounds; deliver 4. Wildcard: stack black mist + red for two frames.'}]},
+ {id:'m10', num:'10', title:'Digital film looks (.flt)', items:[
+   {id:'m10e1', t:'10.1 · Borrow before you build', time:'60m desk + 45m field', gear:'USB-C + computer', d:'Back up factory .flt files → install two ready-made CS-Pro looks → calibration scene + 12-frame mini-roll → describe each look in one sentence.'},
+   {id:'m10e2', t:'10.2 · Design "Faded Summer"', time:'90 min', gear:'computer + camera', d:'Official designer or ramp method: lifted blacks, rolled highlights, slight warmth, sat −15%. Flash to vtg1, shoot golden hour, revise once, reflash.'},
+   {id:'m10e3', t:'10.3 · The red-filter B&W curve', time:'60 min + outing', gear:'red filter + computer', d:'Strong S-curve mono for bw.flt; repeat 9.1 pairs with the new curve.'},
+   {id:'m10a', t:'Assignment 10 · Your signature stock', time:'2 weeks', gear:'everything', d:'One self-designed look as your only color look for 2 weeks across ≥3 modules; keep a v1/v2/v3 change log; name it.'}]},
+ {id:'m11', num:'11', title:'Projects & the long game', items:[
+   {id:'m11w', t:'Weekly rhythm running', time:'ongoing', gear:'—', d:'The Roll (90–120m) + The Contact Sheet (45–60m) + Sketchbook micro-sessions (2–3 × 20m). Mark done each week you keep the rhythm.'},
+   {id:'m11c', t:'Capstone in progress', time:'one season', gear:'—', d:'Pick one: The Zine · 30 Days 30 Frames · One Mile Radius · Three Filters One Scene. Use the notes field for scope + progress.'}]}
+];
+
+const REFDATA = [
+ {t:'Situation → filter + look', rows:[
+  ['Golden-hour landscape','Bare or white mist · warm Vintage','Foreground anchor; sky-or-land, never 50/50'],
+  ['Harsh midday sun','Red filter · B&W dial','3-stop cost wants bright light; hunt shadows & skies'],
+  ['Overcast / flat light','Bare lens · any look','Colors, textures, intimate landscapes; skip mist'],
+  ['Dusk city lights / neon','Black mist · cool Vintage','Brace — 1/30s floor; halos biggest facing lights'],
+  ['Window still life','White mist or bare · warm Vtg or B&W','Stay 3 ft back; arrangements 1–3 ft wide'],
+  ['Night street energy','Flash (auto) · Standard or B&W','Subjects 4–8 ft; wet surfaces double the flash'],
+  ['Big cloud drama','Red filter · B&W (+ black mist wildcard)','Sun behind/beside you for blackest sky'],
+  ['New look wanted','Custom .flt (Module 10)','Lowercase names · restart · test roll first — looks bake in']]},
+ {t:'Red filter tone translation (B&W)', rows:[
+  ['Blue sky','→ near black','Clouds pop; skies gain weight'],
+  ['White clouds / snow','→ bright, detailed','Wait for cumulus days'],
+  ['Green foliage','→ darker','Forests go somber; backlit leaves still glow'],
+  ['Red brick / rust / rock','→ light, luminous','Separates from sky and foliage'],
+  ['Haze','→ cut hard','Distant ridgelines sharpen'],
+  ['Blue water','→ dark, inky','Sparkle highlights stand out']]},
+ {t:'White vs black mist', rows:[
+  ['Highlights','White: big dreamy halation','Black: tighter, gentler glow'],
+  ['Contrast','White: lifts shadows, airy/foggy','Black: keeps blacks black, filmic'],
+  ['Strength','White: loud — the effect IS the picture','Black: subtle — felt more than seen'],
+  ['Best for','White: backlit nature, window still life, high-key','Black: neon, dusk streets, everyday filmic edge'],
+  ['Avoid','White: overcast (gray mush)','Black: soft frontal light (invisible)']]},
+ {t:'Camera constants', rows:[
+  ['Sharp zone','≥ 3 ft to infinity','Nothing closer is ever sharp'],
+  ['Meter','Averages whole frame','More sky = darker photo; more shadow = brighter'],
+  ['Finder','Sees less than the lens','Compose slightly tighter than feels right'],
+  ['Shutter','1/30–1/1000s auto','Brace at dusk; panning blur possible at 1/30'],
+  ['Slots','std / vtg1 / vtg2 / bw .flt','Lowercase, root directory, restart to load'],
+  ['Flash','Xenon, best at 4–8 ft','Auto mode behaves better than forced up close']]}
+];
+
+const FIVEQ = [
+ 'What is the subject — can I name it in three words?',
+ 'What does the light do that flat light wouldn’t?',
+ 'Which compositional device carries it — and is there a foreground?',
+ 'What would I exclude on a reshoot?',
+ 'Would it survive as one of only 24 frames?'
+];
+
+const GEARTAGS = ['bare lens','white mist','black mist','red filter','flash'];
+const LOOKTAGS = ['STD','VTG1','VTG2','B&W'];
+/* ================= STATE ================= */
+const KEY = 'csProWorkbook.v1';
+const blank = () => ({
+  items:{},            // itemId -> {s:0|1|2, n:''}
+  outings:[],          // {id,date,module,location,gear:[],look,intent,predict,results,keepers,lesson}
+  crits:[],            // {id,date,title,module,a:[..5],verdict}
+  slots:{std:{name:'Factory Standard',note:'',date:''},vtg1:{name:'Factory Vintage 1 (warm)',note:'',date:''},vtg2:{name:'Factory Vintage 2 (cool)',note:'',date:''},bw:{name:'Factory B&W',note:'',date:''}},
+  looks:[],            // {id,name,source,slotFit,recipe,verdict}
+  flashes:[],          // {id,date,slot,name,why}
+  created:new Date().toISOString()
+});
+let S;
+try { S = Object.assign(blank(), JSON.parse(localStorage.getItem(KEY)||'{}')); }
+catch(e){ S = blank(); }
+const save = () => localStorage.setItem(KEY, JSON.stringify(S));
+const uid  = () => Date.now().toString(36)+Math.random().toString(36).slice(2,6);
+const today = () => new Date().toISOString().slice(0,10);
+const esc = s => String(s??'').replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const item = id => S.items[id] || (S.items[id]={s:0,n:''});
+
+/* ================= HELPERS ================= */
+const $ = sel => document.querySelector(sel);
+const modPct = m => {
+  const done = m.items.filter(i=>item(i.id).s===2).length;
+  return {done, total:m.items.length, pct: Math.round(100*done/m.items.length)};
+};
+const totalPct = () => {
+  let d=0,t=0; MODULES.forEach(m=>{const p=modPct(m); d+=p.done; t+=p.total;});
+  return {done:d,total:t,pct:t?Math.round(100*d/t):0};
+};
+const STL = ['todo','in field','done ✓'];
+const modOptions = sel => ['<option value="">—</option>',...MODULES.map(m=>`<option ${sel==='M'+m.num?'selected':''}>M${m.num}</option>`)].join('');
+
+/* ================= RENDER: MODULES ================= */
+function renderMods(){
+  $('#mods-list').innerHTML = MODULES.map(m=>{
+    const p = modPct(m);
+    return `<div class="mod" id="mod-${m.id}">
+      <div class="mod-head" data-mod="${m.id}">
+        <span class="mnum">M${m.num}</span><h3>${esc(m.title)}</h3>
+        <span class="mpct">${p.done}/${p.total}</span>
+        <div class="pbar" style="width:90px"><div style="width:${p.pct}%"></div></div>
+        <span class="chev">▶</span>
+      </div>
+      <div class="mod-body">
+        <a class="planlink" href="${PLAN}#${m.id}">📖 Open Module ${m.num} in the training plan →</a>
+        ${m.items.map(it=>{
+          const st = item(it.id);
+          return `<div class="item">
+            <div class="item-top">
+              <h4>${esc(it.t)}</h4>
+              <span class="chip">⏱ ${esc(it.time)}</span>
+              <span class="chip gear">${esc(it.gear)}</span>
+              <button class="stbtn s${st.s}" data-st="${it.id}">${STL[st.s]}</button>
+            </div>
+            <div class="desc">${esc(it.d)}</div>
+            <textarea placeholder="Notes, frame numbers, findings…" data-inote="${it.id}">${esc(st.n)}</textarea>
+          </div>`;}).join('')}
+      </div>
+    </div>`;}).join('');
+}
+
+/* ================= RENDER: DASHBOARD ================= */
+function renderDash(){
+  const tp = totalPct();
+  const outs = S.outings.length, crits = S.crits.length;
+  const custom = Object.values(S.slots).filter(s=>!/^Factory/.test(s.name||'')).length;
+  $('#dash-stats').innerHTML = `
+    <div class="card"><div class="statnum">${tp.pct}%</div><div class="muted">${tp.done} of ${tp.total} exercises done</div>
+      <div class="pbar" style="margin-top:8px"><div style="width:${tp.pct}%"></div></div></div>
+    <div class="card"><div class="statnum">${outs}</div><div class="muted">outing${outs===1?'':'s'} logged</div></div>
+    <div class="card"><div class="statnum">${crits}</div><div class="muted">keeper${crits===1?'':'s'} critiqued</div></div>
+    <div class="card"><div class="statnum">${custom}</div><div class="muted">custom look${custom===1?'':'s'} loaded of 4 slots</div></div>`;
+  // next up: first non-done item in module order
+  let next=null, nm=null;
+  outer: for(const m of MODULES){ for(const it of m.items){ if(item(it.id).s!==2){ next=it; nm=m; break outer; } } }
+  $('#dash-next').innerHTML = next
+    ? `<strong style="color:var(--pine)">M${nm.num} — ${esc(next.t)}</strong> <span class="chip">⏱ ${esc(next.time)}</span> <span class="chip gear">${esc(next.gear)}</span><br><span class="muted">${esc(next.d)}</span><br><a href="${PLAN}#${nm.id}" style="font-size:.85rem">Read the module →</a>`
+    : '🎓 Every exercise is done. Shoot the capstones — and design your next signature stock.';
+  $('#dash-mods').innerHTML = MODULES.map(m=>{
+    const p=modPct(m);
+    return `<div style="display:flex;align-items:center;gap:10px;margin:7px 0">
+      <span class="mnum" style="background:var(--forest);color:#fdfbf2;font-family:var(--mono);font-size:.7rem;padding:2px 8px;border-radius:4px;min-width:38px;text-align:center">M${m.num}</span>
+      <span style="flex:1;font-size:.88rem">${esc(m.title)}</span>
+      <div class="pbar" style="width:140px"><div style="width:${p.pct}%"></div></div>
+      <span class="muted" style="font-family:var(--mono);font-size:.72rem;min-width:34px;text-align:right">${p.done}/${p.total}</span></div>`;}).join('');
+  $('#dash-loadout').innerHTML = Object.entries(S.slots).map(([k,v])=>
+    `<div style="margin:4px 0"><span class="slotname" style="font-family:var(--mono);color:var(--ember);font-size:.75rem">${k}.flt</span> — ${esc(v.name||'(empty)')}${v.date?` <span class="muted">· since ${esc(v.date)}</span>`:''}</div>`).join('');
+}
+
+/* ================= RENDER: FIELD LOG ================= */
+function renderLog(){
+  $('#log-count').textContent = S.outings.length ? `${S.outings.length} outing(s)` : '';
+  $('#log-list').innerHTML = S.outings.length ? S.outings.map(o=>`
+    <div class="entry">
+      <div class="ehead"><span class="etitle">📸 ${esc(o.date||'undated')} ${o.location?'· '+esc(o.location):''}</span>
+        <button class="del" data-del="outings" data-id="${o.id}">delete</button></div>
+      <div class="erow">
+        <div><label>Date</label><input type="date" value="${esc(o.date)}" data-coll="outings" data-id="${o.id}" data-f="date"></div>
+        <div><label>Module</label><select data-coll="outings" data-id="${o.id}" data-f="module">${modOptions(o.module)}</select></div>
+        <div><label>Location</label><input value="${esc(o.location)}" data-coll="outings" data-id="${o.id}" data-f="location"></div>
+        <div><label>Dial look used</label><select data-coll="outings" data-id="${o.id}" data-f="look"><option value="">—</option>${LOOKTAGS.map(l=>`<option ${o.look===l?'selected':''}>${l}</option>`).join('')}</select></div>
+      </div>
+      <div class="erow wide"><div><label>Glass on the lens</label>
+        <div class="gearchecks">${GEARTAGS.map(g=>`<label class="${(o.gear||[]).includes(g)?'sel':''}"><input type="checkbox" ${(o.gear||[]).includes(g)?'checked':''} data-gearchk="${g}" data-id="${o.id}">${g}</label>`).join('')}</div></div></div>
+      <div class="erow g2">
+        <div><label>Before — intent (what I’m practicing)</label><textarea data-coll="outings" data-id="${o.id}" data-f="intent">${esc(o.intent)}</textarea></div>
+        <div><label>Before — predictions</label><textarea data-coll="outings" data-id="${o.id}" data-f="predict">${esc(o.predict)}</textarea></div>
+        <div><label>After — results & surprises</label><textarea data-coll="outings" data-id="${o.id}" data-f="results">${esc(o.results)}</textarea></div>
+        <div><label>After — lesson for next time</label><textarea data-coll="outings" data-id="${o.id}" data-f="lesson">${esc(o.lesson)}</textarea></div>
+      </div>
+      <div class="erow"><div><label>Keepers</label><input type="number" min="0" value="${esc(o.keepers)}" data-coll="outings" data-id="${o.id}" data-f="keepers"></div></div>
+    </div>`).join('') : '<div class="empty">No outings yet. Log your first roll — intent and predictions first.</div>';
+}
+
+/* ================= RENDER: CRITIQUE ================= */
+function renderCrit(){
+  $('#crit-count').textContent = S.crits.length ? `${S.crits.length} critique(s)` : '';
+  $('#crit-list').innerHTML = S.crits.length ? S.crits.map(c=>`
+    <div class="entry">
+      <div class="ehead"><span class="etitle">🖼 ${esc(c.title||'untitled keeper')}</span>
+        <button class="del" data-del="crits" data-id="${c.id}">delete</button></div>
+      <div class="erow">
+        <div><label>Date</label><input type="date" value="${esc(c.date)}" data-coll="crits" data-id="${c.id}" data-f="date"></div>
+        <div><label>Photo (filename / frame)</label><input value="${esc(c.title)}" data-coll="crits" data-id="${c.id}" data-f="title"></div>
+        <div><label>Module</label><select data-coll="crits" data-id="${c.id}" data-f="module">${modOptions(c.module)}</select></div>
+        <div><label>Verdict</label><select data-coll="crits" data-id="${c.id}" data-f="verdict">${['','portfolio','keeper','reshoot it','archive'].map(v=>`<option ${c.verdict===v?'selected':''}>${v}</option>`).join('')}</select></div>
+      </div>
+      ${FIVEQ.map((q,i)=>`<div class="qa"><div class="q">${i+1}. ${q}</div><textarea data-coll="crits" data-id="${c.id}" data-f="a${i}">${esc(c['a'+i])}</textarea></div>`).join('')}
+    </div>`).join('') : '<div class="empty">No critiques yet. Pull a keeper from your last contact sheet and face the five questions.</div>';
+}
+
+/* ================= RENDER: FILTER LAB ================= */
+function renderLab(){
+  $('#slot-cards').innerHTML = Object.entries(S.slots).map(([k,v])=>`
+    <div class="card slot">
+      <span class="slotname">${k}.flt — dial "${k==='std'?'Standard':k==='vtg1'?'Vintage 1':k==='vtg2'?'Vintage 2':'B&W'}"</span>
+      <div style="margin-top:8px"><label>Look currently loaded</label><input value="${esc(v.name)}" data-slot="${k}" data-f="name"></div>
+      <div class="erow" style="margin-top:8px"><div><label>Loaded on</label><input type="date" value="${esc(v.date)}" data-slot="${k}" data-f="date"></div></div>
+      <div style="margin-top:8px"><label>Character / when to use</label><textarea data-slot="${k}" data-f="note">${esc(v.note)}</textarea></div>
+    </div>`).join('');
+  $('#look-list').innerHTML = S.looks.length ? S.looks.map(l=>`
+    <div class="entry">
+      <div class="ehead"><span class="etitle">🎞 ${esc(l.name||'unnamed look')}</span>
+        <button class="del" data-del="looks" data-id="${l.id}">delete</button></div>
+      <div class="erow">
+        <div><label>Name</label><input value="${esc(l.name)}" data-coll="looks" data-id="${l.id}" data-f="name"></div>
+        <div><label>Source</label><select data-coll="looks" data-id="${l.id}" data-f="source">${['','official designer','Camp Shades','CodesThings','Camper Snapper ramp','LUT conversion','self-designed','other'].map(v=>`<option ${l.source===v?'selected':''}>${v}</option>`).join('')}</select></div>
+        <div><label>Best slot</label><select data-coll="looks" data-id="${l.id}" data-f="slotFit"><option value="">—</option>${LOOKTAGS.map(v=>`<option ${l.slotFit===v?'selected':''}>${v}</option>`).join('')}</select></div>
+        <div><label>Verdict</label><select data-coll="looks" data-id="${l.id}" data-f="verdict">${['','untested','testing','keeper','retired'].map(v=>`<option ${l.verdict===v?'selected':''}>${v}</option>`).join('')}</select></div>
+      </div>
+      <div><label>Recipe / description (curve, sat, split-tone, versions)</label><textarea data-coll="looks" data-id="${l.id}" data-f="recipe">${esc(l.recipe)}</textarea></div>
+    </div>`).join('') : '<div class="empty">Library is empty. Add the factory looks you backed up, then your first downloads.</div>';
+  $('#flash-list').innerHTML = S.flashes.length ? S.flashes.map(f=>`
+    <div class="entry">
+      <div class="ehead"><span class="etitle">⚡ ${esc(f.date||'undated')} → ${esc(f.slot||'?')}.flt</span>
+        <button class="del" data-del="flashes" data-id="${f.id}">delete</button></div>
+      <div class="erow">
+        <div><label>Date</label><input type="date" value="${esc(f.date)}" data-coll="flashes" data-id="${f.id}" data-f="date"></div>
+        <div><label>Slot</label><select data-coll="flashes" data-id="${f.id}" data-f="slot">${['','std','vtg1','vtg2','bw'].map(v=>`<option ${f.slot===v?'selected':''}>${v}</option>`).join('')}</select></div>
+        <div><label>Look installed</label><input value="${esc(f.name)}" data-coll="flashes" data-id="${f.id}" data-f="name"></div>
+      </div>
+      <div><label>Why the change / calibration-scene result</label><textarea data-coll="flashes" data-id="${f.id}" data-f="why">${esc(f.why)}</textarea></div>
+    </div>`).join('') : '<div class="empty">No reflashes logged. Rule: every reflash gets a line and a calibration-scene test.</div>';
+}
+
+/* ================= RENDER: REFERENCE ================= */
+function renderRef(){
+  $('#ref-list').innerHTML = REFDATA.map((r,i)=>`
+    <details class="ref" ${i===0?'open':''}><summary>${esc(r.t)}</summary>
+      <div class="refbody"><table>${r.rows.map(row=>`<tr>${row.map((c,j)=>`<t${j===0?'h':'d'}>${esc(c)}</t${j===0?'h':'d'}>`).join('')}</tr>`).join('')}</table></div>
+    </details>`).join('');
+}
+
+/* ================= EVENTS ================= */
+$('#tabs').addEventListener('click', e=>{
+  const b = e.target.closest('button[data-v]'); if(!b) return;
+  document.querySelectorAll('#tabs button').forEach(x=>x.classList.toggle('on',x===b));
+  document.querySelectorAll('.view').forEach(v=>v.classList.toggle('on', v.id==='v-'+b.dataset.v));
+  if(b.dataset.v==='dash') renderDash();
+});
+
+document.body.addEventListener('click', e=>{
+  const mh = e.target.closest('.mod-head');
+  if(mh){ document.getElementById('mod-'+mh.dataset.mod).classList.toggle('open'); return; }
+  const st = e.target.closest('[data-st]');
+  if(st){ const it=item(st.dataset.st); it.s=(it.s+1)%3; save();
+    st.className='stbtn s'+it.s; st.textContent=STL[it.s];
+    const m = MODULES.find(m=>m.items.some(x=>x.id===st.dataset.st));
+    const p = modPct(m), head = document.querySelector(`#mod-${m.id} .mod-head`);
+    head.querySelector('.mpct').textContent=`${p.done}/${p.total}`;
+    head.querySelector('.pbar>div').style.width=p.pct+'%';
+    return; }
+  const del = e.target.closest('[data-del]');
+  if(del){ if(!confirm('Delete this entry? This cannot be undone.')) return;
+    S[del.dataset.del] = S[del.dataset.del].filter(x=>x.id!==del.dataset.id); save();
+    ({outings:renderLog, crits:renderCrit, looks:renderLab, flashes:renderLab})[del.dataset.del]();
+    return; }
+});
+
+document.body.addEventListener('input', e=>{
+  const t = e.target;
+  if(t.dataset.inote!==undefined){ item(t.dataset.inote).n=t.value; save(); return; }
+  if(t.dataset.slot){ S.slots[t.dataset.slot][t.dataset.f]=t.value; save(); return; }
+  if(t.dataset.gearchk){
+    const o=S.outings.find(x=>x.id===t.dataset.id); if(!o) return;
+    o.gear=o.gear||[];
+    if(t.checked){ if(!o.gear.includes(t.dataset.gearchk)) o.gear.push(t.dataset.gearchk); }
+    else o.gear=o.gear.filter(g=>g!==t.dataset.gearchk);
+    t.closest('label').classList.toggle('sel',t.checked); save(); return; }
+  if(t.dataset.coll){
+    const row=S[t.dataset.coll].find(x=>x.id===t.dataset.id);
+    if(row){ row[t.dataset.f]=t.value; save(); } return; }
+});
+
+$('#add-outing').onclick = ()=>{ S.outings.unshift({id:uid(),date:today(),module:'',location:'',gear:[],look:'',intent:'',predict:'',results:'',lesson:'',keepers:''}); save(); renderLog(); };
+$('#add-crit').onclick   = ()=>{ S.crits.unshift({id:uid(),date:today(),title:'',module:'',verdict:'',a0:'',a1:'',a2:'',a3:'',a4:''}); save(); renderCrit(); };
+$('#add-look').onclick   = ()=>{ S.looks.unshift({id:uid(),name:'',source:'',slotFit:'',recipe:'',verdict:'untested'}); save(); renderLab(); };
+$('#add-flash').onclick  = ()=>{ S.flashes.unshift({id:uid(),date:today(),slot:'',name:'',why:''}); save(); renderLab(); };
+
+/* ---- data tab ---- */
+$('#btn-export').onclick = ()=>{
+  const blob = new Blob([JSON.stringify(S,null,2)],{type:'application/json'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'camp-snap-workbook-backup-'+today()+'.json';
+  a.click(); URL.revokeObjectURL(a.href);
+};
+$('#btn-import').onclick = ()=> $('#import-file').click();
+$('#import-file').onchange = e=>{
+  const f=e.target.files[0]; if(!f) return;
+  const r=new FileReader();
+  r.onload=()=>{ try{
+      const data=JSON.parse(r.result);
+      if(!data.items && !data.outings) throw new Error('not a workbook file');
+      if(!confirm('Replace ALL current workbook data with this backup?')) return;
+      S=Object.assign(blank(),data); save(); init();
+      alert('Backup restored.');
+    }catch(err){ alert('Could not import: '+err.message); } };
+  r.readAsText(f); e.target.value='';
+};
+$('#btn-print').onclick = ()=>window.print();
+$('#btn-reset').onclick = ()=>{
+  if(!confirm('Erase ALL workbook data (progress, logs, critiques, filter lab)?')) return;
+  if(!confirm('Really sure? Export a backup first. This is permanent.')) return;
+  S=blank(); save(); init();
+};
+
+/* ================= INIT ================= */
+function init(){
+  renderMods(); renderDash(); renderLog(); renderCrit(); renderLab(); renderRef();
+  $('#data-meta').textContent = 'Workbook started '+(S.created||'').slice(0,10)+' · stored under key "'+KEY+'" in this browser.';
+}
+init();
+</script>
+</body>
+</html>
