@@ -6,9 +6,10 @@
 <title>Field School Workbook — Camp Snap Pro</title>
 <style>
   :root{
-    --pine:#22381f; --forest:#3a5a34; --moss:#6a8a5a; --canvas:#f4f0e4;
-    --paper:#fbf9f1; --bark:#4a3728; --ember:#c25c33; --sun:#e0a437;
-    --ink:#26261f; --faded:#6d6a5c; --line:#d8d2bd; --card:#ffffff;
+    --pine:#4a0030; --forest:#bb0070; --moss:#ec008c; --magenta:#ec008c;
+    --canvas:#f6f2f6; --paper:#fdf1f8; --bark:#4b2540; --ember:#6d28d9;
+    --sun:#ff7ec7; --danger:#e11d48;
+    --ink:#221a20; --faded:#6f626b; --line:#e7dce4; --card:#ffffff;
     --mono:"Consolas","Menlo",monospace;
   }
   *{box-sizing:border-box;margin:0;padding:0}
@@ -17,18 +18,20 @@
   button{font-family:inherit;cursor:pointer}
   textarea,input,select{font-family:inherit;font-size:.92rem;color:var(--ink);background:var(--paper);border:1px solid var(--line);border-radius:6px;padding:7px 10px;width:100%}
   textarea{resize:vertical;min-height:54px}
-  textarea:focus,input:focus,select:focus{outline:2px solid var(--moss)}
+  textarea:focus,input:focus,select:focus{outline:2px solid var(--magenta)}
   label{font-size:.72rem;text-transform:uppercase;letter-spacing:.09em;color:var(--faded);font-weight:600;display:block;margin-bottom:3px}
 
-  header.hero{background:linear-gradient(160deg,var(--pine),var(--forest));color:var(--canvas);padding:26px 20px 20px;text-align:center}
-  header.hero h1{color:#fdfbf2;font-size:clamp(1.3rem,3.5vw,1.9rem)}
-  header.hero p{color:#cdd2b8;font-size:.9rem;margin-top:4px}
-  header.hero a{color:var(--sun)}
+  header.hero{background:linear-gradient(150deg,var(--pine),#9c005e 60%,var(--magenta));color:var(--canvas);padding:26px 20px 20px;text-align:center}
+  header.hero h1{color:#fff;font-size:clamp(1.3rem,3.5vw,1.9rem)}
+  header.hero p{color:#ffe4f4;font-size:.9rem;margin-top:4px}
+  header.hero a{color:#ffd0ec;font-weight:600}
 
-  nav.tabs{position:sticky;top:0;z-index:40;background:var(--pine);display:flex;gap:4px;justify-content:center;flex-wrap:wrap;padding:8px 10px;box-shadow:0 2px 8px rgba(0,0,0,.25)}
-  nav.tabs button{background:transparent;border:1px solid transparent;color:#e4e6d4;font-size:.84rem;padding:5px 14px;border-radius:999px}
-  nav.tabs button:hover{border-color:var(--sun);color:var(--sun)}
-  nav.tabs button.on{background:var(--sun);color:var(--pine);font-weight:700}
+  nav.tabs{position:sticky;top:0;z-index:40;background:var(--pine);display:flex;gap:6px;justify-content:center;flex-wrap:nowrap;overflow-x:auto;padding:9px 10px;box-shadow:0 2px 14px rgba(74,0,48,.28);scrollbar-width:none;-webkit-overflow-scrolling:touch}
+  nav.tabs::-webkit-scrollbar{display:none}
+  nav.tabs button{flex:0 0 auto;background:transparent;border:1px solid transparent;color:#f3d9ea;font-size:.84rem;padding:6px 15px;border-radius:999px;white-space:nowrap;transition:background .15s,color .15s,border-color .15s}
+  nav.tabs button:hover{background:rgba(236,0,140,.28);color:#fff}
+  nav.tabs button.on{background:var(--magenta);color:#fff;font-weight:700}
+  @media(max-width:720px){nav.tabs{justify-content:flex-start}}
 
   main{max-width:980px;margin:0 auto;padding:22px 18px 80px}
   .view{display:none}
@@ -67,11 +70,11 @@
   .item-top{display:flex;gap:10px;align-items:flex-start;flex-wrap:wrap}
   .item-top h4{flex:1;font-size:.95rem;min-width:180px}
   .chip{font-size:.68rem;font-family:var(--mono);padding:2px 9px;border-radius:999px;background:var(--canvas);border:1px solid var(--line);color:var(--faded);white-space:nowrap}
-  .chip.gear{background:#f3e9df;border-color:#dcc8b4;color:var(--bark)}
+  .chip.gear{background:#f1eafc;border-color:#d8c8f2;color:var(--ember)}
   .item .desc{font-size:.86rem;color:var(--faded);margin:7px 0 9px}
   .stbtn{border:1.5px solid var(--line);border-radius:999px;font-size:.75rem;padding:3px 12px;background:var(--canvas);color:var(--faded);white-space:nowrap;font-weight:600}
-  .stbtn.s1{background:#fdf3d7;border-color:var(--sun);color:#8a6414}
-  .stbtn.s2{background:#e6efdd;border-color:var(--forest);color:var(--forest)}
+  .stbtn.s1{background:#f3ecff;border-color:var(--ember);color:#5b21b6}
+  .stbtn.s2{background:var(--forest);border-color:var(--forest);color:#fff}
   .item textarea{margin-top:4px;min-height:40px}
 
   /* entries */
@@ -79,17 +82,17 @@
   .btn{background:var(--forest);color:#fdfbf2;border:none;border-radius:8px;padding:8px 16px;font-size:.88rem;font-weight:600}
   .btn:hover{background:var(--pine)}
   .btn.ghost{background:transparent;color:var(--forest);border:1.5px solid var(--forest)}
-  .btn.warn{background:transparent;color:var(--ember);border:1.5px solid var(--ember)}
+  .btn.warn{background:transparent;color:var(--danger);border:1.5px solid var(--danger)}
   .entry{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin-bottom:12px}
   .entry .erow{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px;margin-bottom:10px}
   .entry .erow.wide{grid-template-columns:1fr}
   .entry .ehead{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;gap:8px}
   .entry .ehead .etitle{font-family:Georgia,serif;color:var(--forest);font-weight:700;font-size:.95rem}
-  .del{background:none;border:none;color:var(--ember);font-size:.78rem;text-decoration:underline}
+  .del{background:none;border:none;color:var(--danger);font-size:.78rem;text-decoration:underline}
   .gearchecks{display:flex;gap:6px;flex-wrap:wrap}
   .gearchecks label{display:flex;align-items:center;gap:5px;font-size:.78rem;text-transform:none;letter-spacing:0;background:var(--canvas);border:1px solid var(--line);border-radius:999px;padding:3px 10px;cursor:pointer;margin:0;color:var(--ink);font-weight:500}
   .gearchecks input{width:auto}
-  .gearchecks label.sel{background:#e6efdd;border-color:var(--forest);color:var(--forest);font-weight:600}
+  .gearchecks label.sel{background:#fde3f2;border-color:var(--forest);color:var(--forest);font-weight:600}
 
   /* filter lab slots */
   .slot{border-left:5px solid var(--moss)}
